@@ -1,0 +1,10 @@
+<!-- templates/pago_cancelado.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>Pago Cancelado</h2>
+    <p>Has cancelado el proceso de pago. Puedes volver a intentarlo desde tu <a href="{% url 'user_dashboard' %}">dashboard</a>.</p>
+  </div>
+{% endblock %}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load custom_filters %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de compra</title>
+
+<style>
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f5f2;
+  color: #2b2f2e;
+  padding: 30px 20px;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8e4;
+}
+
+/* Imagen de cabecera */
+.header-image {
+  text-align: center;
+  margin-bottom: 35px;
+  
+}
+
+.header-image img {
+  max-width: 140px;
+  height: auto;
+  
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.06));
+  transition: transform 0.25s ease-in-out;
+}
+.header-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Título principal */
+.thank-you {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2e7d32;
+}
+
+/* Títulos de sección */
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #37474f;
+  border-left: 4px solid #48e;
+  padding-left: 10px;
+  margin-bottom: 18px;
+  
+}
+.titulo_producto{
+text-transform:uppercase;
+font-size:12px;
+}
+/* Tarjetas de producto */
+.product-card {
+  display:grid;
+  grid-template-columns:repeat(2,300px);
+  background:red;
+  background: #f7faf8;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  border: 1px solid #d8e3dd;
+  transition: box-shadow 0.3s ease;
+}
+@media screen and (max-width:768px){
+.product-card{
+  grid-template-columns:repeat(1,300px);
+  justify-content:center;
+  align-items:center;
+}
+}
+.product-card img{
+  display:flex;
+  margin:auto;
+  max-width:200px;
+  max-height:200px;
+  justify-content:center;
+  align-items:center;
+  border-radius:5px;
+}
+.product-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.product-card p {
+  margin: 5px 0;
+  color:#455a64;
+}
+.product-card strong {
+  color: #455a64;
+}
+
+/* Totales */
+.total {
+  margin: 20px auto;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #263238;
+  border-top: 1px solid #cfd8dc;
+  border-left: 4px solid #48e;
+  padding-top: 10px;
+}
+.total strong {
+  color:  #0047ab;
+  margin-left: 8px;
+}
+
+/* Dirección */
+.address p {
+  margin: 5px 0;
+  color: #455a64;
+}
+.address strong {
+  color: #0047ab;
+}
+
+/* Nota centrada */
+.centered-note {
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  color: #616161;
+  margin: 28px 0;
+}
+
+/* Pie de página */
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9e9e9e;
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Botón */
+.btn-dashboard {
+  display: block;
+  margin: 30px auto 0;
+  text-align: center;
+  background-color:#0047ab;
+  color: #ffffff;
+  padding: 10px 22px;
+  max-width: 220px;
+  border-radius: 15px 0 15px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+}
+.btn-dashboard a{
+  color:#e0e0e0;
+  text-decoration:none;
+  
+  font-weight:600;
+}
+.btn-dashboard:hover {
+  background-color: #48e;
+  transform: scale(1.03);
+}
+
+.btn-dashboard:active {
+  transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 22px 18px;
+  }
+
+  .thank-you {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .product-card p,
+  .address p {
+    font-size: 0.95rem;
+  }
+
+  .total {
+    font-size: 1rem;
+  }
+
+  .btn-dashboard {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+  }
+}
+
+</style>
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="thank-you">¡Gracias por tu compra!</div>
+    
+    
+    <p>Número de orden: <strong>{{ compra.id }}</strong></p>
+    <div class="section-title">🛒 Productos Adquiridos</div>
+    {% for item in compra.items.all %}
+    <div class="product-card">
+        <img src="{% if item.variante and item.variante.producto.foto1 %}{{ item.variante.producto.foto1.url }}{% elif item.producto.foto1 %}{{ item.producto.foto1.url }}{% endif %}" alt="{{ item.producto.titulo }}">
+        <div>
+            <p class="titulo_producto"><strong>{{ item.producto.titulo }}</strong></p>
+            {% if item.variante %}
+                 
+                <p>Color: {{ item.variante.color }}</p>
+                <p>Género: {{ item.variante.genero }}</p>
+                {% if item.variante.talla_ropa %}
+                    <p>Talla: {{ item.variante.talla_ropa.codigo }}</p>
+                {% elif item.variante.talla_calzado %}
+                    <p>Talla: US {{ item.variante.talla_calzado.us }} / EU {{ item.variante.talla_calzado.eu }} / {{ item.variante.talla_calzado.cm }} cm</p>
+                {% endif %}
+            {% endif %}
+            <p>Precio unitario: ${{ item.precio_unitario|floatformat:2 }}</p>
+            <p>Cantidad: {{ item.cantidad }}</p>
+            <p>Subtotal: ${{ item.subtotal|floatformat:2 }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="section-title">📍Información de envío:</div>
+    <div class="address">
+        <p><strong>Nombre:</strong> {{ compra.direccion.nombre_completo }}</p>
+        <p><strong>Teléfono:</strong> {{ compra.direccion.telefono }}</p>
+        <p><strong>Calle y Número:</strong> {{ compra.direccion.direccion }}</p>
+        <p><strong>Ciudad:</strong> {{ compra.direccion.ciudad }}</p>
+        <p><strong>Estado:</strong> {{ compra.direccion.estado }}</p>
+        <p><strong>Código postal:</strong> {{ compra.direccion.codigo_postal }}</p>
+        <p><strong>País:</strong> {{ compra.direccion.pais }}</p>
+        <p><strong>Tipo de entrega:</strong> {{ compra.direccion.get_opcion_entrega_display }}</p>
+    </div>
+
+    <div class="total">
+        <p><strong>Costo de envío:</strong> ${{ compra.direccion.costo_envio|floatformat:2 }}</p>
+        <p><strong>Total pagado:</strong> <strong>${{ compra.total|floatformat:2 }}</strong></p>
+    </div>
+
+    <p class="centered-note">Te notificaremos cuando tu pedido sea enviado. ¡Gracias por confiar en nosotros! 💪</p>
+    <div class="btn-dashboard">  <a href="https://www.webdevelopermx.com" target="_blank">Continuar Comprando</a></div>
+    <div class="footer">
+            © 2025 Belmont Herrera. Todos los derechos reservados.
+            <a href="https://www.belmontherrera.com" target="_blank">www.belmontherrera.com</a>
+        </div>
+</div>
+
+</body>
+</html>

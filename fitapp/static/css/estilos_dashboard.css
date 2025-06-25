@@ -1,0 +1,484 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes heartBeat {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    14% {
+      -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+    }
+  
+    28% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    42% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    70% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+*{
+    margin:0;
+    padding: 0;
+}
+body, h1, h2, h3, p, ul, li, a, img, details, summary {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    color: #1f1f1f;
+    
+}
+
+header{
+    background-color: #1f1f1f !important ;
+}
+
+.message {
+  max-width:700px;
+  width:100%;
+  
+  border-radius: 5px;
+  font-weight: bold;
+  display:flex;
+  margin:15px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.premium {
+  width: 110px;
+  height: 30px;
+  background: linear-gradient(90deg, #8C6535, gold);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:10px 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 #4c3217;
+  
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+.premium p{
+animation:pulse  8s 1s infinite;
+}
+
+
+/* Container */
+.contenedor {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.titulo-principal {
+    max-width: 1200px;
+    width:100%;
+    display:flex;
+    padding:0;
+    margin:20px auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #555;  
+}
+
+.advertencia {
+  all: unset; /* elimina estilos heredados del navegador */
+  display: block;
+  width: auto;
+}
+/*####################### AQUI ES DONDE METI LA ADVERTENCIA Y QUE SOLO TENGA LOS ESTILOS CUANDO SE ABRA EL DETILS*/
+.advertencia summary {
+  cursor: pointer;
+  user-select: none;
+  
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 8px 0;
+  display: inline-block;
+}
+
+/* ESTILOS SOLO CUANDO ESTÁ ABIERTO */
+.advertencia[open] {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border: 1px solid #e0b4b4;
+  border-left: 5px solid #d63333;
+  border-radius: 6px;
+  background-color: #fff4f4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding-bottom: 10px;
+}
+
+.advertencia[open] summary {
+  padding: 12px 18px;
+  color: #b82e2e;
+}
+
+.advertencia[open] .advertencia_salud {
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  color: #7a1f1f;
+  line-height: 1.6;
+}
+/*###################################################*/
+
+
+.paquete-card h2{
+    text-transform: uppercase;
+    font-size: 17px;
+    text-align: center;
+}
+/* Grid for packages */
+.paquete-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* Card style */
+.paquete-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+
+}
+
+.paquete-card:hover {
+    transform: translateY(-5px);
+}
+
+.paquete-imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+    
+}
+
+.paquete-precio {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+
+.paquete-descripcion {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Buttons */
+.boton {
+    display: inline-block;
+    padding: 10px 14px;
+    margin: 5px 5px 0 0;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: background 0.3s ease;
+    
+}
+button[type="submit"] {
+    cursor: pointer;
+}
+.boton.editar {
+    background: #2980b9;
+    color: white;
+}
+
+.boton.eliminar {
+    background: #c0392b;
+    color: white;
+}
+
+.boton.agregar {
+    background: #27ae60;
+    color: white;
+}
+
+.boton.crear {
+    background: #8e44ad;
+    color: white;
+}
+
+.boton:hover {
+    opacity: 0.9;
+}
+
+/* Dieta & Rutina Blocks */
+.bloque-dieta, .bloque-rutina {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.bloque-dieta h3, .bloque-rutina h3 {
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.bloque-dieta ul {
+    list-style: none;
+}
+
+.bloque-dieta ul li {
+    margin-bottom: 12px;
+    
+}
+
+/* Details Section */
+details {
+    background: #ecf0f1;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+details[open] {
+    background: #dfe6e9;
+}
+
+summary {
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.detalle-contenido {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+
+/* Create button container */
+.crear-paquete-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .paquete-precio {
+        font-size: 1rem;
+    }
+
+    .boton {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .titulo-principal {
+       
+    }
+}
+
+
+@media screen and (max-width:768px){
+    .bienvenido{
+        display:none;
+    }
+}
+
+footer a:hover,
+footer a:focus {
+    color: #8C6535;
+}
+
+
+
+.premium-card {
+  max-width: 350px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(31,31,31,0.92), rgba(45,45,45,0.95));
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  color: #ddd;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeInUp 1s ease both;
+}
+
+.premium-card h2 {
+  font-size: 1.8rem;
+  color: #BFA169;
+  margin-bottom: 1rem;
+}
+
+.premium-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: #eee;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-image: url(/static/images/whatsapp.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+  margin-top: 1rem;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+
+details li,.filtro-paquetes li {
+  list-style: none;
+  width:150px;
+  height: 40px;
+  background-color:  #8C6535;
+  display:flex;
+  margin:auto;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px; 
+
+}
+
+.filtro-paquetes{
+  width:100%;
+  display:flex;
+  margin:10px auto;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+.filtro-paquetes li{
+  width:300px;
+  margin:10px 20px;
+}
+@media screen and (max-width:768px){
+  .filtro-paquetes {
+    display:inline-block;
+  }
+ .filtro-paquetes li{
+  width:270px;
+  margin:5px auto;
+  border-radius: 10px 10px 0 0;
+ }
+  .filtro-paquetes li:nth-child(2){
+    border-radius:  0 0 10px 10px;
+  }
+}
+details li a, .filtro-paquetes li a{
+ color:#fff;
+ font-weight: 700;
+ text-transform: uppercase;
+}
+
+details li a:hover{
+ color:#ffff;
+  animation:pulse  8s 1s infinite;
+}
+
+@media(768px){
+*{
+padding:0;
+margin:0;
+}
+}
+
+
+.form_zapatos{
+  position: absolute;
+  width:500px;
+  
+}

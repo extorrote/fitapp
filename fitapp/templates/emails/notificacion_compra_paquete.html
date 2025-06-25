@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Notificación de Compra de Paquete</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: #f6f8fa;
+            padding: 30px;
+            color: #333;
+        }
+        .email-container {
+            background-color: #ffffff;
+            max-width: 700px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #b38bff;
+        }
+        h2 {
+            color: #2c1e55;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        h3 {
+            color: #4a3b74;
+            margin-top: 30px;
+            font-size: 20px;
+        }
+        ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #999;
+            text-align: center;
+        }
+        .highlight {
+            color: #7e57c2;
+            font-weight: bold;
+        }
+        .section {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fafafa;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h2>🎉 Nueva Compra Realizada - Belmont Herrera</h2>
+
+        <div class="section">
+            <p><span class="label">Usuario:</span> <span class="highlight">{{ usuario.username }}</span> ({{ usuario.email }})</p>
+            <p><span class="label">Nombre completo:</span> {{ usuario.first_name }} {{ usuario.last_name }}</p>
+        </div>
+
+        <h3>📦 Detalles del Paquete</h3>
+        <div class="section">
+            <ul>
+                <li><span class="label">Título:</span> {{ paquete.titulo }}</li>
+                <li><span class="label">Categoría:</span> {{ paquete.get_categoria_display }}</li>
+                <li><span class="label">Precio:</span> ${{ paquete.precio }}</li>
+                <li><span class="label">Pago Éxitoso:</span>{%if compra.pagado%} ✅</li>{%endif%}
+                <li><span class="label">Descripción:</span> {{ paquete.descripcion }}</li>
+                <li><span class="label">Es Premium:</span> {{ paquete.es_premium|yesno:"Sí,No" }}</li>
+                <li><span class="label">Meta personal:</span> {{ paquete.meta_personal }}</li>
+            </ul>
+        </div>
+
+        <h3>🕓 Información de Compra</h3>
+        <div class="section">
+            <p><span class="label">Fecha de compra:</span> {{ compra.fecha_compra }}</p>
+            <p><span class="label">ID de pago:</span> {{ compra.stripe_payment_intent }}</p>
+        </div>
+
+        <div class="footer">
+            Este mensaje fue generado automáticamente por el sistema de <strong>Belmont Herrera</strong>.  
+            <br>Gracias por tu confianza.
+        </div>
+    </div>
+</body>
+</html>

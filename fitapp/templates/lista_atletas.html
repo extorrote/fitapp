@@ -1,0 +1,77 @@
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/estilos_atletas.css' %}" type="text/css">
+{%block content %}
+{% if atletas %}
+
+<div class="div_botones_header">
+<div class="div_regresar"><a href="{%url 'index'%}">Regresar</a></div>
+
+{% if request.user.is_staff %}
+    <div class="div_regresar"><a href="{% url 'agregar_atleta' %}">Agregar Atleta</a></div>
+{% endif %}
+</div>
+
+<div class="div_principal_atletas">
+    {% for atleta in atletas %}
+        <div class="atleta_item">
+            <h2>{{ atleta.nombre }}</h2>
+            <div class="grid_imagenes">
+            {% if atleta.image1 %}
+                <img src="{{ atleta.image1.url }}">
+            {% endif %}
+            {% if atleta.image2 %}
+                <img src="{{ atleta.image2.url }}">
+            {% endif %}
+            {% if atleta.image3 %}
+                <img src="{{ atleta.image3.url }}">
+            {% endif %}
+            {% if atleta.image4 %}
+                <img src="{{ atleta.image4.url }}">
+            {% endif %}
+            {% if atleta.image5 %}
+                <img src="{{ atleta.image5.url }}">
+            {% endif %}
+            </div>
+            {%comment%} ESTO LO CREE PARA LO DE LAS BANDERAS DE LOS PAICES {%endcomment%}
+            <p><strong>País:</strong> {{ atleta.pais }}
+                {% if atleta.pais == 'argentina' %} 🇦🇷
+                {% elif atleta.pais == 'bolivia' %} 🇧🇴
+                {% elif atleta.pais == 'brasil' %} 🇧🇷
+                {% elif atleta.pais == 'chile' %} 🇨🇱
+                {% elif atleta.pais == 'colombia' %} 🇨🇴
+                {% elif atleta.pais == 'costa rica' %} 🇨🇷
+                {% elif atleta.pais == 'cuba' %} 🇨🇺
+                {% elif atleta.pais == 'republica dominicana' %} 🇩🇴
+                {% elif atleta.pais == 'ecuador' %} 🇪🇨
+                {% elif atleta.pais == 'el salvador' %} 🇸🇻
+                {% elif atleta.pais == 'guatemala' %} 🇬🇹
+                {% elif atleta.pais == 'honduras' %} 🇭🇳
+                {% elif atleta.pais == 'mexico' %} 🇲🇽
+                {% elif atleta.pais == 'nicaragua' %} 🇳🇮
+                {% elif atleta.pais == 'panama' %} 🇵🇦
+                {% elif atleta.pais == 'paraguay' %} 🇵🇾
+                {% elif atleta.pais == 'peru' %} 🇵🇪
+                {% elif atleta.pais == 'uruguay' %} 🇺🇾
+                {% elif atleta.pais == 'venezuela' %} 🇻🇪
+                {% elif atleta.pais == 'estados unidos' %} 🇺🇸
+                {% endif %}
+                </p>
+
+            <p><strong>Edad:</strong> {{ atleta.edad }} años</p>
+            <p><strong>Títulos competitivos:</strong> {{ atleta.titulos_competitivos }}</p>
+            <p class="description">{{ atleta.descripcion }}</p>
+
+            {% if request.user.is_staff%}
+            <div class="botones">
+            <a href="{% url 'editar_atleta' atleta.id %}">Editar</a>
+            <a href="{% url 'eliminar_atleta' atleta.id %}" onclick="return confirm('¿Estás seguro de que deseas eliminar este atleta?');">Eliminar</a>
+            </div>
+           {%endif%}
+
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

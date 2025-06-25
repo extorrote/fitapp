@@ -1,0 +1,157 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url(/static/images/body_background7.png);
+    background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*backdrop-filter: blur(5px);*/
+}
+
+
+
+/* Login card container */
+.login-container {
+  background: transparent; /* Light bluish-gray */
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Title */
+.login-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff; /* Dark slate */
+  margin-bottom: 1.5rem;
+}
+
+/* Error messages */
+.error {
+  color: #b91c1c; /* Deep red */
+  background-color: #fdecea; /* Very light red background */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+label {
+  text-align: left;
+  font-weight: 600;
+  color: #fff; /* Slate gray */
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 0.75rem 1rem;
+  border: 2px solid #cbd5e1; /* Light slate */
+  border-radius: 10px;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  background-color: #f1f5f9; /* Very light slate */
+}
+
+input:focus {
+  border-color: green; /* Sky blue */
+  background-color: #fff;
+  outline: none;
+}
+
+/* Submit button */
+button[type="submit"] {
+  padding: 0.9rem;
+  background-color: #FF9B45; /* Sky blue */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #F4E7E1; /* Deeper sky blue */
+  color:black;
+}
+
+/* Return link */
+a {
+  
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  color: #fff; /* Blue */
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #FF9B45; /* Deeper blue */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 2rem 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+
+.eleccion{
+    max-width:600px;
+    width:100%;
+    height:10vh;
+    display:flex;
+    margin:auto;
+    
+    justify-content:center;
+    align-items:center;
+    border-radius:10px;
+}
+.eleccion a{
+
+    color:white;
+    width:250px;
+    height:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:10px;
+    text-decoration:none;
+    font-size:20px;
+    border-radius:5px;
+}
+
+.eleccion a:hover{
+  color: #FF9B45;
+}

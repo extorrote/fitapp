@@ -1,0 +1,23 @@
+{% if mensaje_error %}
+  <div class="alert alert-danger">
+    {{ mensaje_error }}
+  </div>
+{% endif %}
+<h2>Comprar: {{ producto.titulo }}</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <label>Cantidad:</label>
+  <input type="number" name="cantidad" min="1" max="{{ producto.stock }}" value="1" required><br><br>
+
+  <h3>Dirección de Envío</h3>
+  <input type="text" name="nombre_completo" placeholder="Nombre completo" required><br>
+  <input type="text" name="telefono" placeholder="Teléfono" required><br>
+  <input type="text" name="direccion" placeholder="Dirección completa" required><br>
+  <input type="text" name="ciudad" placeholder="Ciudad" required><br>
+  <input type="text" name="estado" placeholder="Estado" required><br>
+  <input type="text" name="codigo_postal" placeholder="Código Postal" required><br>
+  <input type="text" name="pais" placeholder="País" required><br>
+
+  <button type="submit">Proceder al Pago</button>
+</form>

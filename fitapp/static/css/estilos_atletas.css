@@ -1,0 +1,222 @@
+/* === RESET Y CONFIGURACIÓN GENERAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f9f7f1, #fdfcfb);
+  color: #2d2d2d;
+  line-height: 1.6;
+  padding: 2rem;
+}
+.div_botones_header{
+  max-width: 500px;
+  width:100%;
+  height:50px;
+  display:flex;
+  margin:20px auto;
+  align-items: center;
+  justify-content: center;
+}
+.div_regresar{
+    display:flex;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    max-width:200px;
+    padding:0;
+    width:100%;
+    height: 50px;
+    background-color: #2a9d8f;
+    border-radius: 10px  0  10px 0 ;   
+}
+@media screen and (max-width:600px){
+  .div_regresar{
+    margin:5px;
+  }
+}
+.div_regresar a{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    color:white;
+    font-family: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+/* === CONTENEDOR DE LA GRILLA === */
+.div_principal_atletas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  width:100%;
+  margin: auto;
+  
+}
+.grid_imagenes {
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  
+}
+
+.grid_imagenes img {
+  width: 150px;
+  
+  max-height:150px;
+  height:100%;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* === TARJETA DE ATLETA === */
+.atleta_item {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+@media screen and (max-width:768px){
+  body{
+    padding:0;
+    margin: 0;
+  }
+  .div_principal_atletas {
+
+    max-width:750px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap:0;
+    
+  }
+  .atleta_item {
+    width:95%;
+    display: flex;
+    flex-direction: column;
+    margin:15px auto;
+    padding:0;
+    
+    
+  }
+  .grid_imagenes{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap:.1rem;
+  }
+  
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.atleta_item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* === TÍTULO === */
+.atleta_item h2 {
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  color: #264653;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 0.4rem;
+  width: 100%;
+}
+
+
+
+/* === TEXTO === */
+.atleta_item p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+.atleta_item p strong {
+  color: #2a9d8f;
+  font-weight: 600;
+}
+
+.atleta_item p.description {
+  font-style: italic;
+  color: #555;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+}
+
+/* === BOTONES === */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.botones a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.botones a[href*="editar"] {
+  background-color: #2a9d8f;
+  color: #fff;
+}
+
+.botones a[href*="editar"]:hover {
+  background-color: #21867a;
+  transform: scale(1.03);
+}
+
+.botones a[href*="eliminar"] {
+  background-color: #e63946;
+  color: #fff;
+}
+
+.botones a[href*="eliminar"]:hover {
+  background-color: #ba1b1d;
+  transform: scale(1.03);
+}
+
+/* === ÍCONOS SIMULADOS (opcional sin font awesome) === */
+.botones a[href*="editar"]::before {
+  content: "✏️";
+}
+
+.botones a[href*="eliminar"]::before {
+  content: "🗑️";
+}
+
+

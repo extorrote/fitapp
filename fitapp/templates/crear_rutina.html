@@ -1,0 +1,10 @@
+{%extends 'crear_dieta.html'%}
+{%block content %}
+<h1>Crear o Editar Rutina</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Guardar</button>
+</form>
+<a class="regresar"href="{%url 'admin_dashboard'%}">&#8592; Regresar</a>
+{%endblock%}

@@ -1,0 +1,101 @@
+{# ESTA CARPETA Y TEMPLATE TUVE QUE CREARLA ESPECIFICAMENTE PARA PODER MOSTRAR LOS PAQUETES EN GRID SEPARADOS PORQUE SE ME ESTABAN DISTORCIONANDO #}
+
+<div class="paquete-card">
+    <h2>{{ paquete.titulo }}</h2>
+    {% if paquete.image1 and paquete.image1.url %}
+        <img class="paquete-imagen" src="{{ paquete.image1.url }}" alt="Imagen de {{ paquete.titulo }}">
+    {% endif %}
+
+    {% if paquete.es_premium %}
+        <div class="premium"><p>PREMIUM</p></div>
+    {% endif %}
+
+    <div class="paquete-descripcion"><p>{{ paquete.descripcion }}</p></div>
+
+    {% if paquete.id in paquetes_con_acceso or user.is_staff %}
+        <div class="bloque-dieta">
+            <ul>
+                {% for dieta in paquete.dietas.all %}
+                    <li>
+                        <strong>{{ dieta.titulo }}</strong> 
+                        <details>
+                            <summary>🔍 Contenido</summary>
+                            <li><a href="{% url 'ver_detalle_dieta_user' pk=dieta.id %}" class="btn btn-info">Ver Dieta</a></li>
+                        </details>
+                    </li>
+                {% empty %}
+                    {% if paquete.categoria == 'dieta_premium' %}
+                            <details>
+                            <summary>🔍 Ver Contenido</summary>
+                            <div class="premium-card">
+                            <h2>¡Felicidades, {{ user.first_name }}!</h2>
+                            <p>Has activado un <strong>Plan Premium</strong>, lo que te da acceso directo a uno de nuestros coaches certificados.</p>
+                            <p>Para comenzar tu proceso, contáctanos por WhatsApp y uno de nuestros expertos te guiará personalmente con tú Dieta.</p>
+                            <a href="https://wa.me/+17279468985" class="whatsapp-btn" target="_blank" aria-label="Contactar por WhatsApp"></a>
+                            </div>
+                            </details>
+                    {% elif paquete.categoria == 'completo_premium' %}
+                        <details>
+                            <summary>🔍 Ver Contenido</summary>
+                            <div class="premium-card">
+                            <h2>¡Felicidades, {{ user.first_name }}!</h2>
+                            <p>Has activado un <strong>Plan Premium</strong>, lo que te da acceso directo a uno de nuestros coaches certificados.</p>
+                            <p>Para comenzar tu proceso, contáctanos por WhatsApp y uno de nuestros expertos te guiará personalmente con tú Dieta y Rutina.</p>
+                            <a href="https://wa.me/+17279468985" class="whatsapp-btn" target="_blank" aria-label="Contactar por WhatsApp"></a>
+                            </div>
+                            </details>
+
+                        {% elif paquete.categoria == 'rutina_premium' %}
+                        <details>
+                            <summary>🔍 Ver Contenido</summary>
+                            <div class="premium-card">
+                            <h2>¡Felicidades, {{ user.first_name }}!</h2>
+                            <p>Has activado un <strong>Plan Premium</strong>, lo que te da acceso directo a uno de nuestros coaches certificados.</p>
+                            <p>Para comenzar tu proceso, contáctanos por WhatsApp y uno de nuestros expertos te guiará personalmente con tú Rutina.</p>
+                            <a href="https://wa.me/+17279468985" class="whatsapp-btn" target="_blank" aria-label="Contactar por WhatsApp"></a>
+                            </div>
+                            </details>
+                        
+
+                        {% elif paquete.categoria == 'completo_premium_con_farmacologia' %}
+                        <details>
+                            <summary>🔍 Ver Contenido</summary>
+                            <div class="premium-card">
+                            <h2>¡Felicidades, {{ user.first_name }}!</h2>
+                            <p>Has activado un <strong>Plan Premium</strong>, lo que te da acceso directo a uno de nuestros coaches certificados.</p>
+                            <p>Para comenzar tu proceso, contáctanos por WhatsApp y uno de nuestros expertos te guiará personalmente con tú Dieta, Rutina y plan de Fármacologia.</p>
+                            <a href="https://wa.me/+17279468985" class="whatsapp-btn" target="_blank" aria-label="Contactar por WhatsApp"></a>
+                            </div>
+                            </details>
+                    
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="bloque-rutina">
+            <ul>
+                {% for rutina in paquete.rutinas.all %}
+                    <li>
+                        <strong>{{ rutina.titulo }}</strong>
+                        <details>
+                            <summary>🔍 Ver Contenido</summary>
+                            <li><a href="{% url 'ver_detalle_rutina_user' pk=rutina.id %}" class="boton comprar">Ver Rutina</a></li>
+                        </details>
+                    </li>
+                {% empty %}
+                    
+                    
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p><strong>🔒 Contenido bloqueado. Compra este paquete para acceder.</strong></p>
+        <form action="{% url 'iniciar_pago' paquete.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="boton comprar">
+                🛒 Comprar - <strong style="color:green">${{ paquete.precio }} MXN</strong>
+            </button>
+        </form>
+    {% endif %}
+</div>

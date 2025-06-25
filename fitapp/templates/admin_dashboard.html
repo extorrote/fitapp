@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Paquetes</title>
+    <link rel="stylesheet" href="{% static 'css/estilos_dashboard.css' %}">
+</head>
+
+
+
+<body>
+    <div class="contenedor">
+        <h1 class="titulo-principal">📦 Panel de Administración de Paquetes</h1>
+
+        <div class="paquete-grid">
+            {% for paquete in paquetes %}
+            <div class="paquete-card">
+                <h2>{{ paquete.titulo }}</h2>
+
+                {% if paquete.image1 and paquete.image1.url %}
+                <img class="paquete-imagen" src="{{ paquete.image1.url }}" alt="Imagen de {{ paquete.titulo }}">
+
+                {% endif %}
+
+                <p class="paquete-precio">💲{{ paquete.precio }}</p>
+                <div class="paquete-descripcion"><p>{{ paquete.descripcion }}</p></div>
+
+                <div class="paquete-botones">
+                    <a href="{% url 'editar_paquete' paquete.id %}" class="boton editar">✏️ Editar Paquete</a>
+                    <a href="{% url 'eliminar_paquete' paquete.id %}" class="boton eliminar">🗑️ Eliminar Paquete</a>
+                </div>
+
+                <div class="bloque-dieta">
+                    <h3>📋 Dietas</h3>
+                    <ul>
+                        {% for dieta in paquete.dietas.all %}
+                        <li>
+                            <strong>{{ dieta.titulo }}</strong> ({{ dieta.get_meta_personal_display }})
+                            {% if dieta.archivo %}
+                                - <a href="{{ dieta.archivo.url }}" target="_blank">📄 Ver archivo</a>
+                            {% endif %}
+                            <details {% if detalle_dieta and detalle_dieta.id == dieta.id %}open{% endif %}>
+                                <summary>🔍 Ver Dieta</summary>
+                                <div class="detalle-contenido">
+                                    <div class="detalle-contenido" style="max-height: 300px; overflow: auto;">
+                                    <p><strong>Aqui tienes tu Dieta:</strong></p>
+                                    <div>{{ dieta.descripcion|safe }}</div>
+                                </div>
+                                </div>
+                            </details>
+
+                            <div class="paquete-botones">
+                            <a href="{% url 'editar_dieta' dieta.id %}" class="boton editar">✏️ Editar Dieta</a>
+                            <a href="{% url 'eliminar_dieta' dieta.id %}" class="boton eliminar">🗑️ Eliminar Dieta</a>
+                            </div>
+                        </li>
+                        {% empty %}
+                        <li>No hay dietas registradas.</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'agregar_dieta' paquete.id %}" class="boton agregar">➕ Agregar Dieta</a>
+                </div>
+
+                <div class="bloque-rutina">
+                    <h3>🏋️ Rutinas</h3>
+                    <ul>
+                        {% for rutina in paquete.rutinas.all %}
+                        <li>
+                            <strong>{{ rutina.titulo }}</strong> ({{ rutina.get_meta_personal_display }})
+                            {% if rutina.archivo %}
+                                - <a href="{{ rutina.archivo.url }}" target="_blank">📄 Ver archivo</a>
+                            {% endif %}
+                            <details {% if detalle_rutina and detalle_rutina.id == rutina.id %}open{% endif %}>
+                                <summary>🔍 Ver Rutina</summary>
+                                  <div class="detalle-contenido" style="max-height: 300px; overflow: auto;">
+                                    <p><strong>Descripción:</strong></p>
+                                    <div>{{ rutina.descripcion|safe }}</div>
+                                </div>
+                            </details>
+                            <a href="{% url 'editar_rutina' rutina.id %}"class="boton editar">✏️ Editar Rutina</a>
+                            <a href="{% url 'eliminar_rutina' rutina.id %}" class="boton eliminar">🗑️ Eliminar Rutina</a>
+                        </li>
+                        {% empty %}
+                        <li>No hay rutinas registradas.</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'agregar_rutina' paquete.id %}" class="boton agregar">➕ Agregar Rutina</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="crear-paquete-container">
+            <a href="{% url 'crear_paquete' %}" class="boton crear">➕ Crear Nuevo Paquete</a>
+        </div>
+    </div>
+</body>
+</html>

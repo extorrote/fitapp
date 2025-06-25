@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/estilos_registro.css' %}" type="text/css">
+
+    {{ form.media }}  <!-- ESTO DEBI PONERLO PARA QUE EL  CKEditor5  CARGUE BIEN-->
+</head>
+<body>
+{% block content %}
+
+<div class="caja_principal">
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-fieldset">
+        <legend class="form-legend">Datos de envío</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <button type="submit">Siguiente Paso</button>
+</form>
+
+<a class="regresar" href="{% url 'ver_carrito' %}">&#8592; Regresar</a>
+{% endblock %}
+
+</div>
+
+{#  ESTO LO CREE PARA QUE SI EL ITEM TIENE ENVIO GRATIS NO PUEDA ELEGIR LAS OPCIONES EXPRESS #}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const todosEnvioGratis = {{ todos_envio_gratis|yesno:"true,false" }};
+    if (todosEnvioGratis) {
+      const select = document.querySelector("select[name='opcion_entrega']");
+      if (select) {
+        for (let option of select.options) {
+          if (['domicilio_express', 'sucursal_express'].includes(option.value)) {
+            option.disabled = true;
+            option.text += " (No disponible para productos con envío gratis)";
+          }
+        }
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

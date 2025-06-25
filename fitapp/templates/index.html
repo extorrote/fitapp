@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{#  ENVIAR LOGO EN EMAILS , TRABAJAR EN PRECIOS DE LOS ENVIOS INTERNACIONALES, #}
+<section class="hero">
+  {%comment%}<img src="{% static 'images/hero_fitness.png' %}" alt="Transformación física" class="hero-img">{%endcomment%}
+  <div class="hero-text">
+  {# Mostrar mensajes de éxito o error #}
+  {% if messages %}
+    <div class="form-messages">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+    <section class="planes">
+    <h2>¿Quiénes somos?</h2>
+    <div class="plan-cards">
+    <div class="plan">
+      <img src="{% static 'images/javier.png' %}" alt="Coach Javier Herrera">
+      <h3>Javier Herrera</h3>
+      <ul>
+        <li>Atleta clasificado +95kg</li>
+        <li>Entrenador personal certificado</li>
+        <li>Especialista en hipertrofia, farmacología y nutrición deportiva</li>
+      </ul>
+      <a href="{% url 'biografia_javier' %}" class="btn-primary">Leer Biografía</a>
+    </div>
+
+    <div class="plan">
+      <img src="{% static 'images/alejandro2.jpg' %}" alt="Coach Alejandro Belmont" >
+      <h3>Alejandro Belmont</h3>
+      <ul>
+        <li>Entrenador personal certificado</li>
+        <li>10+ años de experiencia</li>
+        <li>Especialista en hipertrofia, pérdida de grasa y culturismo competitivo</li>
+      </ul>
+      <a href="{% url 'biografia_alejandro' %}" class="btn-primary">Leer Biografía</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+</div>
+  </div>
+</section>
+
+
+
+
+
+<section class="testimonios">
+  <h2>Resultados reales</h2>
+  <div class="testimonios-grid">
+    <div class="before-after">
+      <img src="{% static 'images/antes1.png' %}" alt="Antes">
+      <img src="{% static 'images/despues1.png' %}" alt="Después">
+     {%comment%} <p><strong>Juan</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+    <div class="before-after">
+      <img src="{% static 'images/antes2.png' %}" alt="Antes">
+      <img src="{% static 'images/despues2.png' %}" alt="Después">
+      {%comment%}<p><strong>Ana</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+    <div class="before-after">
+      <img src="{% static 'images/antes3.png' %}" alt="Antes">
+      <img src="{% static 'images/despues3.png' %}" alt="Después">
+      {%comment%}<p><strong>Carlos</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+    <div class="before-after">
+      <img src="{% static 'images/antes4.png' %}" alt="Antes">
+      <img src="{% static 'images/despues4.png' %}" alt="Después">
+      {%comment%}<p><strong>Lucia</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+    <div class="before-after">
+      <img src="{% static 'images/antes5.png' %}" alt="Antes">
+      <img src="{% static 'images/despues5.png' %}" alt="Después">
+      {%comment%}<p><strong>Alex</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+    <div class="before-after">
+      <img src="{% static 'images/antes6.png' %}" alt="Antes">
+      <img src="{% static 'images/despues6.png' %}" alt="Después">
+     {%comment%} <p><strong>Norma</strong> perdió 15kg en 4 meses y ganó masa muscular con nuestro programa. Su plan incluyó un enfoque progresivo de entrenamiento de fuerza, junto con una dieta rica en proteínas y control de calorías, adaptada semanalmente a sus avances.</p>{%endcomment%}
+    </div>
+  </div>
+</section>
+
+
+<!-- NUEVA SECCIÓN: DIETAS PERSONALIZADAS -->
+<section class="dietas">
+  <h2>Dietas Personalizadas</h2>
+  <p class="parrafo_rutinas_descripciones">Nuestras dietas no son genéricas. Analizamos tu composición corporal, tus objetivos, tus preferencias alimenticias y cualquier condición médica relevante para crear un plan nutricional completamente adaptado a ti. Ya sea que quieras ganar masa muscular, perder grasa, mejorar tu energía o cuidar tu salud hormonal, tenemos una estrategia alimenticia pensada para ti.</p>
+  <ul>
+    <li>Diseño nutricional semanal según progreso</li>
+    <li>Planes adaptados a dietas veganas, vegetarianas, keto, etc.</li>
+    <li>Guías de suplementos basadas en evidencia</li>
+    <li>Soporte constante y ajustes en tiempo real</li>
+  </ul>
+</section>
+
+<section class="rutinas">
+  <h2>Rutinas de Entrenamiento Personalizadas</h2>
+  <p class="parrafo_rutinas_descripciones">Entrena con propósito. Creamos rutinas adaptadas a tu nivel, condición física, disponibilidad de tiempo, equipo y metas personales. Ya sea que busques mejorar tu salud o competir al máximo nivel, nuestro enfoque es progresivo, seguro y eficaz.</p>
+  <ul>
+    <li>Programas para pérdida de peso</li>
+    <li>Planes para aumento de masa muscular</li>
+    <li>Rutinas de definición muscular</li>
+    <li>Entrenamientos enfocados en la estética corporal</li>
+    <li>Mejoramiento del rendimiento físico</li>
+    <li>Programas específicos para ganancia de fuerza</li>
+    <li>Preparación para competencias</li>
+    <li>Planes para longevidad y bienestar integral</li>
+    <li>Entrenamientos en casa, gimnasio o al aire libre</li>
+    <li>Seguimiento y ajustes según evolución</li>
+  </ul>
+</section>
+
+
+<section class="planes">
+  <h2>Planes disponibles</h2>
+  <div class="plan-cards">
+    <div class="plan">
+      <h3>Plan Básico</h3>
+      <ul>
+        <li>Rutina personalizada</li>
+        <li>Plan de alimentación</li>
+        <li>Fármacologia</li>
+        <li>Acceso a materiales exclusivos</li>
+      </ul>
+      <p><strong>Desde $999 MXN / mes</strong></p>
+      {%if user.is_authenticated%}
+      <a href="{%url 'user_dashboard'%}" class="btn-secondary">Quiero este plan</a>
+      {%else%}
+      <a href="{%url 'login'%}" class="btn-secondary">Quiero este plan</a>
+      {%endif%}
+    </div>
+    <div class="plan premium">
+      <h3>Plan Premium</h3>
+      <ul>
+        <li>Todo lo del básico</li>
+        <li>Video llamada con coach</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <p><strong>$Desde 2499 MXN / mes</strong></p>
+      {%if user.is_authenticated%}
+      <a href="{%url 'user_dashboard'%}" class="btn-primary">Obtener plan Premium</a>
+      {%else%}
+      <a href="{%url 'login'%}" class="btn-primary">Obtener plan Premium</a>
+      {%endif%}
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>¿Estás listo para transformar tu vida?</h2>
+  <p>Transforma tu Cuerpo con Nosotros! Entrenamiento, nutrición y guía personalizada para alcanzar tu mejor versión.</p>
+  <a href="{%url 'registrar_usuario'%}" class="btn-primary">Únete ahora</a>
+</section>
+
+{% endblock %}

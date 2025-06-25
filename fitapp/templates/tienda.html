@@ -1,0 +1,566 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+   
+     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    
+      <link rel="stylesheet" type="text/css" href="{% static '/css/store.css'%}">
+      <link rel="stylesheet" href="{%static 'fuentes/fuentes.css'%}"><!--ESTO ES PARA CARGAR FUENTES NUEVAS-->
+  <style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    .buscador-productos {
+  margin: 20px 0;
+  text-align: center;
+}
+.buscador-productos input {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Barra de navegación (Dashboard Header) -->
+
+<header>
+    <img src="{% static 'images/logo2_sin_fondo.png' %}" alt="Logo FitWeb" />
+    <input type="checkbox" id="checkbox">
+    <label for="checkbox">
+      <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#fff">
+        <path d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/>
+      </svg>
+
+    </label>
+   
+    <nav>
+      <ul>
+        {%if productos_en_carrito and user.is_authenticated%} {# ASI ME SALE EL BOTON SOLO SI EL USUARIO TIENE ITEMS EN EL CARRO#}
+      <li> <a  href="{% url 'ver_carrito' %}" >VER CARRITO
+        <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="20px" fill="#fff">
+          <path d="M284.53-80.67q-30.86 0-52.7-21.97Q210-124.62 210-155.47q0-30.86 21.98-52.7Q253.95-230 284.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83Zm400 0q-30.86 0-52.7-21.97Q610-124.62 610-155.47q0-30.86 21.98-52.7Q653.95-230 684.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83ZM238.67-734 344-515.33h285.33l120-218.67H238.67ZM206-800.67h589.38q22.98 0 34.97 20.84 11.98 20.83.32 41.83L693.33-490.67q-11 19.34-28.87 30.67-17.87 11.33-39.13 11.33H324l-52 96h487.33V-286H278q-43 0-63-31.83-20-31.84-.33-68.17l60.66-111.33-149.33-316H47.33V-880h121.34L206-800.67Zm138 285.34h285.33H344Z"/>
+        </svg>
+
+        {%elif not user.is_authenticated%}
+         <li> <a  href="{% url 'login' %}" ><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M292-120q-38 0-65-27.5T200-213v-371l-73-176H40v-80h141l66 160h591q23 0 35 19t1 39L760-399q51 8 85.5 47t34.5 92q0 58-40.5 99T741-120q-59 0-99.5-41T601-260q0-20 5-37t14-33l-131-12-120 180q-13 20-33.5 31T292-120Zm382-285 99-195H280l50 120q8 20 25.5 33.5T396-431l278 26ZM293-201q2 0 9-5l97-144q-49-5-77-23.5T280-412v200q0 5 4 8t9 3Zm447 1q26 0 43-17.5t17-42.5q0-26-17-43t-43-17q-25 0-42.5 17T680-260q0 25 17.5 42.5T740-200Zm-66-205-278-26 278 26Z"/></svg> VER CARRITO
+        
+        {%endif%}
+  </a></li>
+     
+       
+          <li><a href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> INICIO</a></li>
+           {%if user.is_authenticated%}
+           <li> <a href="{% url 'perfil_usuario' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>MI PERFIL</a></li>
+      <li><a href="{% url 'logout' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg> CERRAR SESIÓN</a></li>
+      {%else%}
+         
+          <li><a href="{% url 'registrar_usuario' %}"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M610-210q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm110 0q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm110 0q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-630 90q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z"/></svg>REGISTRARSE</a></li>  
+          <li><a href="{%url 'lista_atletas'%}">NUESTROS ATLETAS</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+<body>
+<!-- Contenido del Dashboard -->
+<div class="contenedor">
+     {% if messages %}
+    <div class="form-messages">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+{#BUSCADOR EN TIEMPO REAL , NO NECESITÉ UNA VIEW PARA ESTO, simplemente lo hice con la clase del titulo ###############}
+<div class="buscador-productos">
+    <input type="text" id="busqueda-productos" placeholder="Buscar Producto..." />
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputBusqueda = document.getElementById('busqueda-productos');
+    const items = document.querySelectorAll('.cart-item');
+
+    inputBusqueda.addEventListener('input', function () {
+      const filtro = this.value.toLowerCase();
+
+      items.forEach((item, index) => {
+        const titulo = item.querySelector('.titulo_producto')?.textContent.toLowerCase();
+        const coincide = titulo?.includes(filtro);
+
+        item.style.display = coincide ? 'block' : 'none';
+
+        // Si coincide y hay un swiper asociado, actualizarlo
+        if (coincide && swiperInstances[index]) {
+          setTimeout(() => {
+            swiperInstances[index].update();
+          }, 50); // Le damos un pequeño delay para que el DOM se actualice
+        }
+      });
+    });
+  });
+</script>
+
+{############################## FIN BUSCADOR #######################}
+
+<div class="caja_mayor_productos_farmacos"> 
+<h2>Ropa | Calzado | Accesorios</h2>
+
+{%if productos_info %}
+<div class="cart-items calzado-items" >
+{% for item in productos_info %}
+  {% with producto=item.producto colores=item.colores tallas=item.tallas %}{#SIN ESTO NO SALEN LOS items #}
+        <div class="cart-item">        
+        <h3 class="titulo_producto">{{ producto.titulo}}</h3>
+          
+        <div class="swiper swiper-{{ producto.id }}">
+        <div class="swiper-wrapper ">
+        {% if producto.foto1 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto1.url }}">
+        <img src="{{ producto.foto1.url }}" alt="Imagen 1 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto2 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto2.url }}">
+        <img src="{{ producto.foto2.url }}" alt="Imagen 2 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto3 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto3.url }}">
+        <img src="{{ producto.foto3.url }}" alt="Imagen 3 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+  
+        {% if producto.foto4 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto4.url }}">
+        <img src="{{ producto.foto4.url }}" alt="Imagen 4 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+       {% if producto.foto5 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto5.url }}">
+        <img src="{{ producto.foto5.url }}" alt="Imagen 5 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto6 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto6.url }}">
+        <img src="{{ producto.foto6.url }}" alt="Imagen 6 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto7 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto7.url }}">
+        <img src="{{ producto.foto7.url }}" alt="Imagen 7 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto8 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto8.url }}">
+        <img src="{{ producto.foto8.url }}" alt="Imagen 8 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto9 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto9.url }}">
+        <img src="{{ producto.foto9.url }}" alt="Imagen 9 de {{ producto.titulo }}" ></a>
+        </div>{% endif %}
+
+        {% if producto.foto10 %}
+        <div class="swiper-slide">
+          <a data-fancybox="galeria-producto-{{ producto.id }}" href="{{ producto.foto10.url }}">
+        <img src="{{ producto.foto10.url }}" alt="Imagen 10 de {{ producto.titulo }}" ></a>
+        </div>
+        {% endif %}
+        
+          </div>
+         
+        
+
+          
+          {% if producto.marca %}
+            <p><strong>Marca:</strong> {{ primera_variante.marca }}</p>
+          {% endif %}
+
+          {% if producto.descripcion %}
+            <p><strong>Descripción:</strong> {{ primera_variante.descripcion }}</p>
+          {% endif %}
+          
+        </div>
+              {% with variantes=producto.variantes.all %}
+              {% if variantes %}
+                  {% with variantes|first as primera_variante %}
+                      <p class="precio">${{ primera_variante.precio }} MXN</p>   
+                  {% endwith %}
+              {% endif %}
+              {% endwith %}
+             <strong class="label_descripcion">Descripción:</strong>
+              <div class="detalles_producto">
+                <div class="descripcion"><em>{{ producto.descripcion }}</em></div>
+              </div>
+          <div class="detalles_producto">
+
+              
+
+          
+          {#ESTOS TOCA ASI PORQUE NO ESTAN EN EL MODELO PRODUCTO SINO EN MODELO VARIANTE#}
+          {% with variantes=producto.variantes.all %}
+          {% if variantes %}
+          {% with variantes|first as producto %}
+          <div><strong>Genero:</strong> <em>{{ producto.genero }}</em></div>
+          <div><strong>Stock:</strong> <em>{{ producto.stock }}</em></div>
+          
+          {% endwith %}
+          {% endif %}
+          {% endwith %}
+          
+        </div>
+         {#     AQUI ESTOY MOSTRANDO LAS TALLAS Y COLORES DISPONIBLES #}
+                <div class="stockdetalle-stock_detalle">
+                <details>
+                  <summary><h4>Ver Stock por Talla y Color</h4></summary>
+                  <div class="stockdetalle-stock_list">
+                    {% for color, tallas_dict in item.stock_por_talla_y_color.items %}
+                      {% for talla, stock in tallas_dict.items %}
+                        <div class="stockdetalle-stock_item {% if producto.categoria == 'calzado' %}calzado-item{% else %}ropa-item{% endif %}">
+                          {% if producto.categoria == 'calzado' %}
+                            <span class="stockdetalle-color-stock">
+                              <strong>Color:</strong> {{ color|capfirst }} | <strong>Stock:</strong> {{ stock }}
+                            </span>
+                            <span class="stockdetalle-talla">
+                              <strong>Talla:</strong> {{ talla }}
+                            </span>
+                          {% else %}
+                            <span><strong>Color:</strong> {{ color|capfirst }}</span> |
+                            <span><strong>Talla:</strong> {{ talla }}</span> |
+                            <span><strong>Stock:</strong> {{ stock }}</span>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+                    {% endfor %}
+                  </div>
+                </details>
+              </div>
+              
+        <div class="marca"><strong>Marca:</strong> <em>{{ producto.marca }}  </em></div>
+        {% if suplemento.tiene_envio_gratis %}
+        <p class="envio_gratis"><strong>¡Con envío gratis! ✅</strong></p>
+        {%else%}
+        <p class="envio_gratis no_envio_gratis" ><strong>El costo de este Producto no incluye tarifa de Envio</strong></p>
+        {% endif %}
+        {% if suplemento.tiene_envio_gratis %}
+        <p class="envio_gratis"><strong>¡Con envío gratis! ✅</strong></p>
+        {% endif %}
+              
+
+  <div class="producto-form">
+  <form method="POST" action="{% url 'agregar_al_carrito' %}" class="formulario-carrito">
+    {% csrf_token %}
+    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+    <input type="hidden" name="content_type" value="producto">
+    <input type="hidden" name="color" id="color_seleccionado_{{ producto.id }}" value="">
+
+    <!-- Color -->
+    <div class="form-item">
+      <label for="color_{{ producto.id }}">Color:</label>
+      <select name="color" id="color_{{ producto.id }}" required>
+        <option value="">-- Selecciona un color --</option>
+        {% for color in colores %}
+          <option value="{{ color }}">{{ color|capfirst }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Talla -->
+    <div class="form-item">
+      <label for="talla_{{ producto.id }}">Talla:</label>
+      <select name="talla" id="talla_{{ producto.id }}" required>
+        <option value="">-- Selecciona una talla --</option>
+        {% for talla in tallas %}
+          <option value="{{ talla.id }}">{{ talla.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Cantidad -->
+    <div class="form-item">
+      <label for="cantidad_{{ producto.id }}">Cantidad:</label>
+      <input type="number" id="cantidad_{{ producto.id }}" name="cantidad" value="1" min="1">
+    </div>
+
+    <!-- Espacio vacío para completar la fila -->
+    <div class="form-item empty"></div>
+
+    <!-- Botón en su propia fila -->
+    </div>
+        {%if user.is_authenticated%}
+        <button class="agregar_al_carrito"type="submit">Agregar al carrito</button>
+        {%else%}
+        <a class="agregar_al_carrito" href="{%url 'login'%}">Agregar al carrito</a>
+        {%endif%}
+  </form>
+
+
+
+<!-- Script para cargar tallas dinámicamente según color -->
+<script>
+  document.getElementById('color_{{ producto.id }}').addEventListener('change', function() {
+    const color = this.value;
+    const productoId = "{{ producto.id }}";
+    const tallaSelect = document.getElementById('talla_{{ producto.id }}');
+    const colorHiddenInput = document.getElementById('color_seleccionado_{{ producto.id }}');
+
+    // Actualizar el input hidden con el color seleccionado
+    colorHiddenInput.value = color;
+
+    // Vaciar el select de tallas mientras carga
+    tallaSelect.innerHTML = '<option value="">Cargando tallas...</option>';
+
+    if (!color) {
+      tallaSelect.innerHTML = '<option value="">-- Selecciona una talla --</option>';
+      return;
+    }
+
+    fetch(`/ajax/tallas_por_color/?producto_id=${productoId}&color=${encodeURIComponent(color)}`)
+      .then(response => response.json())
+      .then(data => {
+        tallaSelect.innerHTML = '<option value="">-- Selecciona una talla --</option>';
+        data.tallas.forEach(talla => {
+          const option = document.createElement('option');
+          option.value = talla.id;
+          option.textContent = talla.nombre;
+          tallaSelect.appendChild(option);
+        });
+      })
+      .catch((err) => {
+        console.error('Error cargando tallas:', err);
+        tallaSelect.innerHTML = '<option value="">Error cargando tallas</option>';
+      });
+  });
+</script>
+    </div>
+  {% endwith %}
+{% endfor %}
+{%endif%} {#CIERRE DE IF PRINCIPAL ZAPATERIA#}
+
+</div>
+
+
+
+
+<div class="caja_mayor_productos_farmacos">    
+{% if farmacos_suplementos %}
+<h2>Suplementos | Fármacos |productos generales</h2>
+<div class="cart-items">
+  {% for suplemento in farmacos_suplementos %} 
+    <div class="cart-item">   
+      <h3 class="titulo_producto">{{ suplemento.titulo }}</h3>
+
+      <!-- Mostrar fotos si existen -->
+      <div class="swiper swiper-{{ suplemento.id }}">
+        <div class="swiper-wrapper ">
+          {% if suplemento.foto1 %}
+          <div class="swiper-slide">
+            <a data-fancybox="galeria-suplemento-{{ suplemento.id }}" href="{{ suplemento.foto1.url }}">
+              <img src="{{ suplemento.foto1.url }}" alt="Imagen 1 de {{ suplemento.titulo }}">
+            </a>
+          </div>
+          {% endif %}
+          {% if suplemento.foto2 %}
+          <div class="swiper-slide">
+            <a data-fancybox="galeria-suplemento-{{ suplemento.id }}" href="{{ suplemento.foto2.url }}">
+              <img src="{{ suplemento.foto2.url }}" alt="Foto 2">
+            </a>
+          </div>
+          {% endif %}
+          {% if suplemento.foto3 %}
+          <div class="swiper-slide">
+            <a data-fancybox="galeria-suplemento-{{ suplemento.id }}" href="{{ suplemento.foto3.url }}">
+              <img src="{{ suplemento.foto3.url }}" alt="Foto 3">
+            </a>
+          </div>
+          {% endif %}
+
+          {% if not suplemento.foto1 and not suplemento.foto2 and not suplemento.foto3 %}
+          <div class="swiper-slide">
+            <img src="{% static 'images/logo_sin_fondo.png' %}" alt="Imagen no disponible">
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Controles Swiper -->
+        <div class="swiper-pagination swiper-pagination-{{ forloop.counter }}"></div>
+        <div class="swiper-button-next swiper-button-next-{{ forloop.counter }}"></div>
+        <div class="swiper-button-prev swiper-button-prev-{{ forloop.counter }}"></div>
+      </div>
+
+      <p class="precio"> ${{ suplemento.precio }} MXN</p>
+      
+      <div class="product-info">
+        <strong class="label_descripcion">Descripción:</strong>
+        <div class="detalles_producto">
+          <div class="descripcion"><em>{{ suplemento.descripcion }}</em></div>
+        </div>
+        <div class="detalles_producto">
+          
+          <div><strong>Marca:</strong> <em>{{ suplemento.marca }}</em></div>
+          {######################## ASI NO SALDRA NADA SI LA META PERSONAL ES OTRO #}
+          {%if suplemento.meta_personal == 'otro' %}
+          
+          {%else%}
+          <div><strong>Meta:</strong> <em>{{ suplemento.meta_personal }}</em></div>
+          {%endif%}
+
+          <div><strong>Stock:</strong> <em>{{ suplemento.stock }}</em></div>
+          {% if suplemento.fecha_de_vencimiento %} 
+          <div><strong>Vence:</strong> <em>{{ suplemento.fecha_de_vencimiento }}</em></div> 
+          {% endif %}
+        </div>
+
+        {% if suplemento.tiene_envio_gratis %}
+        <p class="envio_gratis"><strong>¡Con envío gratis! ✅</strong></p>
+        {%else%}
+        <p class="envio_gratis" style="color:gray;font-size:12px;"><strong>El costo de este Producto no incluye tarifa de Envio</strong></p>
+        {% endif %}
+
+        
+
+        <!-- Formulario para agregar al carrito -->
+        <form method="POST" action="{% url 'agregar_al_carrito' %}">
+          {% csrf_token %}
+          <input type="hidden" name="producto_id" value="{{ suplemento.id }}">
+          <input type="hidden" name="content_type" value="suplementos">
+          <label>Cantidad:</label>
+          <input type="number" name="cantidad" value="1" min="1" max="{{ suplemento.stock }}">
+          {%if user.is_authenticated%}
+        <button class="agregar_al_carrito"type="submit">Agregar al carrito</button>
+        {%else%}
+        <a class="agregar_al_carrito" href="{%url 'login'%}">Agregar al carrito</a>
+        {%endif%}
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="no_productos">Aún no hay productos de suplementación para tu meta personal.</p>
+{% endif %}
+
+</div>
+
+
+
+
+
+
+
+
+{%if  user.is_authenticated%} 
+<div class="botones-footer-tienda">
+  <a class="ver_carrito" href="{% url 'ver_carrito' %}" >Ver Carrito
+    <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="40px" fill="#fff">
+      <path d="M284.53-80.67q-30.86 0-52.7-21.97Q210-124.62 210-155.47q0-30.86 21.98-52.7Q253.95-230 284.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83Zm400 0q-30.86 0-52.7-21.97Q610-124.62 610-155.47q0-30.86 21.98-52.7Q653.95-230 684.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83ZM238.67-734 344-515.33h285.33l120-218.67H238.67ZM206-800.67h589.38q22.98 0 34.97 20.84 11.98 20.83.32 41.83L693.33-490.67q-11 19.34-28.87 30.67-17.87 11.33-39.13 11.33H324l-52 96h487.33V-286H278q-43 0-63-31.83-20-31.84-.33-68.17l60.66-111.33-149.33-316H47.33V-880h121.34L206-800.67Zm138 285.34h285.33H344Z"/>
+    </svg>
+  </a>
+</div>  
+{%else%}
+<div class="botones-footer-tienda">
+  <a class="ver_carrito tienda_no_login" href="{% url 'login' %}" >Ver Carrito
+    <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="40px" fill="#fff">
+      <path d="M284.53-80.67q-30.86 0-52.7-21.97Q210-124.62 210-155.47q0-30.86 21.98-52.7Q253.95-230 284.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83Zm400 0q-30.86 0-52.7-21.97Q610-124.62 610-155.47q0-30.86 21.98-52.7Q653.95-230 684.81-230t52.69 21.98q21.83 21.97 21.83 52.83t-21.97 52.69q-21.98 21.83-52.83 21.83ZM238.67-734 344-515.33h285.33l120-218.67H238.67ZM206-800.67h589.38q22.98 0 34.97 20.84 11.98 20.83.32 41.83L693.33-490.67q-11 19.34-28.87 30.67-17.87 11.33-39.13 11.33H324l-52 96h487.33V-286H278q-43 0-63-31.83-20-31.84-.33-68.17l60.66-111.33-149.33-316H47.33V-880h121.34L206-800.67Zm138 285.34h285.33H344Z"/>
+    </svg>
+  </a>
+</div>  
+{%endif%}
+
+<!-- CSS Swiper y Fancybox -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+
+<!-- JS Swiper y Fancybox -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+<!-- Inicialización -->
+<script>
+  const swiperInstances = [];
+
+  // Inicializa Swiper para cada contenedor
+  document.querySelectorAll('.swiper').forEach((swiperEl, i) => {
+    const index = i + 1;
+    const swiper = new Swiper(swiperEl, {
+      loop: true,
+      effect: "fade", // Agrega efecto fade
+      fadeEffect: {
+        crossFade: true,
+      },
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: `.swiper-pagination-${index}`,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: `.swiper-button-next-${index}`,
+        prevEl: `.swiper-button-prev-${index}`,
+      },
+    });
+
+    swiperInstances.push(swiper);
+  });
+
+  // Inicializa Fancybox con agrupación por galería única
+  Fancybox.bind('[data-fancybox^="galeria-"]', {
+    groupAll: false, // <- Esto evita que mezcle fotos de distintos productos
+    Toolbar: true,
+    animated: true,
+  });
+
+  // Buscador en tiempo real para productos y suplementos
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputBusqueda = document.getElementById('busqueda-productos');
+    if (!inputBusqueda) return;
+
+    const items = document.querySelectorAll('.cart-item');
+
+    inputBusqueda.addEventListener('input', function () {
+      const filtro = this.value.toLowerCase();
+
+      items.forEach((item, index) => {
+        const titulo = item.querySelector('.titulo_producto')?.textContent.toLowerCase();
+        const coincide = titulo?.includes(filtro);
+
+        item.style.display = coincide ? 'block' : 'none';
+
+        // Actualiza Swiper si se vuelve a mostrar
+        if (coincide && swiperInstances[index]) {
+          setTimeout(() => {
+            swiperInstances[index].update();
+          }, 50);
+        }
+      });
+    });
+  });
+</script>
+
+
+
+    
+  </body>
+</html>

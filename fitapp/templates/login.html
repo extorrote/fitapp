@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    {% block content %}
+    <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" id="username" required />
+
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" required />
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="eleccion">
+
+<a href="{% url 'registrar_usuario' %}">REGISTRARSE</a>
+
+</div>
+<div class="regresar">
+<a href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>Regresar</a>
+</div>
+        
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <fieldset>
+        <legend>Datos de usuario</legend>
+        {{ user_form.email.label_tag }} {{ user_form.email }}
+        {{ user_form.first_name.label_tag }} {{ user_form.first_name }}
+        {{ user_form.last_name.label_tag }} {{ user_form.last_name }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Datos adicionales</legend>
+        {{ registro_form.genero.label_tag }} {{ registro_form.genero }}
+        {{ registro_form.foto_perfil.label_tag }} {{ registro_form.foto_perfil }}
+        {# Aquí agregas los demás campos del registro_form igual que en tu template actual #}
+        ...
+    </fieldset>
+
+    <button type="submit">Guardar cambios</button>
+</form>

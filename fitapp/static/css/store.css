@@ -1,0 +1,456 @@
+@keyframes heartBeat {
+  0%, 28%, 42%, 70% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+}
+
+.caja_mayor_productos_farmacos {
+  max-width: 1250px;
+  width: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: transparent;
+  color: #1e2022;
+  font-size: 14px;
+  margin: 20px auto;
+  padding: 0;
+}
+
+.caja_mayor_productos_farmacos .titulo_producto {
+  max-width: 400px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+  text-transform: uppercase;
+  font-family: "estetica_mayuscula";
+  font-weight: 700;
+  letter-spacing: 2px;
+  background-color: #2c2c2c;
+  color: #d4af37;
+}
+
+.swiper-button-next, .swiper-button-prev, .swiper-pagination-bullet {
+  display: none !important;
+}
+.swiper-wrapper {
+  margin-right: 0;
+  padding-right: 0;
+  width: 100%;
+}
+.caja_mayor_productos_farmacos .swiper {
+  width: 100%;
+  height: 250px;
+  background-color: #1f1f1f;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+.caja_mayor_productos_farmacos .swiper-slide img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.caja_mayor_productos_farmacos h2,
+.dietas_rutinas_h2 {
+  max-width: 1250px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  text-transform: uppercase;
+  font-family: "titulo_tipo_pelicula" !important;
+  letter-spacing: 10px;
+  color: #37474f;
+  font-size: 17px;
+}
+
+.tienda_no_login {
+  color: white !important;
+}
+
+.no_productos {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.precio {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2c2c2c;
+  color: #d4af37;
+  font-family: 'Georgia', serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 14px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  box-shadow: 0 8px 25px rgba(39, 73, 109, 0.5);
+}
+
+.agregar_al_carrito {
+  max-width:300px;
+  height:30px;
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  color: #fff !important;
+  font-family: 'Georgia', serif;
+  font-size: 20px !important;
+  font-weight: 500;
+  background-color: #FF9B45;
+  background-image: none !important;
+  animation: heartBeat 1s ease-in 10s;
+
+  
+}
+.agregar_al_carrito:hover{
+ background-color: rgba(255, 166, 0, 0.742);
+ font-weight: 600;
+}
+@media (max-width: 768px) {
+  .caja_mayor_productos_farmacos h2 {
+    height: auto;
+    font-size: 13px;
+  }
+  .dietas_rutinas_h2 {
+    letter-spacing: 8px;
+  }
+  .agregar_al_carrito{
+    height:auto;
+  }
+}
+
+.boton_tienda_body{
+  max-width:400px;
+  height:40px;
+}
+
+
+.caja_mayor_productos_farmacos .container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+@media (max-width: 768px) {
+  .caja_mayor_productos_farmacos .container {
+    padding: 0;
+  }
+}
+
+.caja_mayor_productos_farmacos h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #111;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.caja_mayor_productos_farmacos .cart-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.caja_mayor_productos_farmacos .cart-item {
+  width: 400px;
+  background-color: #fcfcfc;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.caja_mayor_productos_farmacos .cart-item:hover {
+  transform: scale(1.01);
+}
+
+.caja_mayor_productos_farmacos form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+.caja_mayor_productos_farmacos input[type="number"] {
+  width: 50px;
+  padding: 4px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.TOTAL {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  background-color: transparent !important;
+  color: green;
+}
+
+.caja_mayor_productos_farmacos .product-info {
+  padding: 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  color: #1e2022;
+}
+.caja_mayor_productos_farmacos .product-info:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.detalles_producto {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.detalles_producto div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e8f0;
+  color: #1e2022;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+.detalles_producto div:hover {
+  background-color: #cbd5e1;
+}
+.detalles_producto div em {
+  line-height: 1.6;
+}
+.detalles_producto div strong {
+  margin-right: 10px;
+}
+.detalles_producto .fecha,
+.detalles_producto .descripcion {
+  grid-column: 1 / -1;
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.marca {
+  width: 300px;
+  height: 35px;
+  display: flex;
+  margin: 5px auto;
+  justify-content: center;
+  align-items: center;
+}
+.marca em {
+  margin-left: 10px;
+  font-size: 13px;
+  font-family: "titulo_tipo_pelicula";
+  color: #6e6e6e;
+}
+
+.envio_gratis,
+.label_descripcion {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.envio_gratis {
+  color: green;
+}
+.no_envio_gratis {
+  color: rgba(0, 0, 0, 0.708);
+  font-size: 10px;
+}
+.label_descripcion {
+  color: #111;
+  margin-bottom: -20px;
+}
+
+.producto-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+.formulario-carrito {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+.form-item label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.form-item select,
+.form-item input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.empty {
+  visibility: hidden;
+}
+
+@media (max-width: 480px) {
+  .formulario-carrito {
+    grid-template-columns: 1fr;
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  .empty {
+    display: none;
+  }
+}
+
+.stockdetalle-stock_detalle {
+  max-width: 400px;
+  padding: 1rem;
+  background: #f9fafb;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin-top: 1rem;
+  user-select: none;
+}
+.stockdetalle-stock_detalle details summary {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-weight: 700;
+  color: #2c3e50;
+  border-bottom: 2px solid #FF9B45;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+}
+.stockdetalle-stock_detalle details[open] summary {
+  color: #2980b9;
+}
+.stockdetalle-stock_detalle details summary::-webkit-details-marker {
+  display: none;
+}
+.stockdetalle-stock_detalle details summary::before {
+  content: "►";
+  transition: transform 0.3s ease;
+}
+.stockdetalle-stock_detalle details[open] summary::before {
+  transform: rotate(90deg);
+}
+.stockdetalle-stock_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+.stockdetalle-stock_item {
+  background: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+.stockdetalle-stock_item:hover {
+  background-color: #eaf4fc;
+}
+.stockdetalle-stock_item span {
+  white-space: nowrap;
+  font-weight: 600;
+  color: #34495e;
+}
+.stockdetalle-stock_item span strong {
+  color: #2980b9;
+}
+@media (max-width: 480px) {
+  .stockdetalle-stock_detalle {
+    max-width: 100%;
+    padding: 0.75rem;
+  }
+  .stockdetalle-stock_item {
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+  .stockdetalle-stock_item span {
+    flex: 1 1 100%;
+    white-space: normal;
+  }
+}
+
+
+.botones-footer-tienda{
+  max-width:600px;
+  width:100%;
+  height: 40px;
+  background-color: #FF9B45;
+  display:flex;
+  margin:15px auto;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+.numero_de_items_footer{
+  width:30px;
+  color:#ffffff;
+  display: flex;
+  
+}
+
+
+.botones-footer-tienda a{
+  color:#fff;
+  font-weight: 600s;
+  max-width:300px;
+  width: 100%;
+  height:40px;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botones-footer-tienda a:hover{
+  background-color: rgba(255, 68, 0, 0.486);
+  font-weight: 600;
+}

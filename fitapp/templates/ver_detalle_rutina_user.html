@@ -1,0 +1,106 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/estilos_dietas.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/footers.css' %}" type="text/css">
+
+<div id="myModal" class="modal">
+  <div class="modal-image-wrapper" style="position: relative; display: inline-block;">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+  <div id="caption"></div>
+</div>
+
+{% block content %}
+<div class="diet-container">
+    <div class="diet-hero">
+        <h1>{{ detalle_rutina.titulo }}</h1>
+        <p class="motivator">¡Vamos por tu meta! {{ user.first_name }} 💪</p>
+    </div>
+
+    <!-- SEMANA 1 -->
+    <div class="week-section">
+        <div class="week-title">{{ detalle_rutina.semana1 }}</div>
+        <div class="image-grid">
+            {% if detalle_rutina.image1 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image1.url }}" alt="Semana 1">{% endif %}
+            {% if detalle_rutina.image2 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image2.url }}" alt="Semana 1">{% endif %}
+            {% if detalle_rutina.image3 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image3.url }}" alt="Semana 1">{% endif %}
+            {% if detalle_rutina.image4 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image4.url }}" alt="Semana 1">{% endif %}
+            {% if detalle_rutina.image5 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image5.url }}" alt="Semana 1">{% endif %}
+            {% if detalle_rutina.image6 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image6.url }}" alt="Semana 1">{% endif %}
+        </div>
+    </div>
+
+    <!-- SEMANA 2 -->
+    <div class="week-section">
+        <div class="week-title">{{ detalle_rutina.semana2 }}</div>
+        <div class="image-grid">
+            {% if detalle_rutina.image7 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image7.url }}" alt="Semana 2">{% endif %}
+            {% if detalle_rutina.image8 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image8.url }}" alt="Semana 2">{% endif %}
+            {% if detalle_rutina.image9 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image9.url }}" alt="Semana 2">{% endif %}
+            {% if detalle_rutina.image10 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image10.url }}" alt="Semana 2">{% endif %}
+            {% if detalle_rutina.image11 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image11.url }}" alt="Semana 2">{% endif %}
+            {% if detalle_rutina.image12 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image12.url }}" alt="Semana 2">{% endif %}
+        </div>
+    </div>
+
+    <!-- SEMANA 3 -->
+    <div class="week-section">
+        <div class="week-title">{{ detalle_rutina.semana3 }}</div>
+        <div class="image-grid">
+            {% if detalle_rutina.image13 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image13.url }}" alt="Semana 3">{% endif %}
+            {% if detalle_rutina.image14 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image14.url }}" alt="Semana 3">{% endif %}
+            {% if detalle_rutina.image15 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image15.url }}" alt="Semana 3">{% endif %}
+            {% if detalle_rutina.image16 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image16.url }}" alt="Semana 3">{% endif %}
+            {% if detalle_rutina.image17 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image17.url }}" alt="Semana 3">{% endif %}
+            {% if detalle_rutina.image18 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image18.url }}" alt="Semana 3">{% endif %}
+        </div>
+    </div>
+
+    <!-- SEMANA 4 -->
+    <div class="week-section">
+        <div class="week-title">{{ detalle_rutina.semana4 }}</div>
+        <div class="image-grid">
+            {% if detalle_rutina.image19 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image19.url }}" alt="Semana 4">{% endif %}
+            {% if detalle_rutina.image20 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image20.url }}" alt="Semana 4">{% endif %}
+            {% if detalle_rutina.image21 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image21.url }}" alt="Semana 4">{% endif %}
+            {% if detalle_rutina.image22 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image22.url }}" alt="Semana 4">{% endif %}
+            {% if detalle_rutina.image23 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image23.url }}" alt="Semana 4">{% endif %}
+            {% if detalle_rutina.image24 %}<img onclick="openModal(this.src)"src="{{ detalle_rutina.image24.url }}" alt="Semana 4">{% endif %}
+        </div>
+    </div>
+    <div class="diet-section">
+        <h3>Descripción 📋</h3>
+        <div class="diet-description">
+            {{ detalle_rutina.descripcion|safe }}
+        </div>
+    </div>
+
+    <div class="button-area">
+        <a href="{% url 'user_dashboard' %}" class="btn-back">⬅ Volver al Panel</a>
+    </div>
+</div>
+{% endblock %}
+
+
+<script>
+    function openModal(imageSrc, captionText) {
+        const modal = document.getElementById("myModal");
+        const modalImage = document.getElementById("modalImage");
+        
+
+        modal.style.display = "flex";
+        modalImage.src = imageSrc;
+        
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("myModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

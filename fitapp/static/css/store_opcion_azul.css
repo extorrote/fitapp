@@ -1,0 +1,276 @@
+.caja_mayor_productos_farmacos {
+    max-width: 1800px;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #1a1a1a;
+    font-size: 14px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+.caja_mayor_productos_farmacos .titulo_producto {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-family: "estetica_mayuscula";
+    background-color: #004e64;
+    font-size: 12px;
+}
+
+.caja_mayor_productos_farmacos h2,
+.botones-carrito-tienda {
+    max-width: 1240px;
+    width: 100%;
+    display: flex;
+    height: 40px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px 0 10px 0;
+    background-color: #e3eaf2;
+    color: #333;
+}
+
+@media(max-width:768px) {
+    .caja_mayor_productos_farmacos h2 {
+        height: auto;
+    }
+}
+
+.precio {
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(to right, #004e64, #00a5cf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.botones-carrito-tienda {
+    background-color: transparent;
+}
+
+.botones-carrito-tienda a {
+    color: #ffffff;
+    height: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin: auto 30px;
+    background-color: #007c91;
+    transition: background-color 0.3s ease;
+    width: 170px;
+}
+
+.botones-carrito-tienda .pagar_items {
+    background-color: #2e7d32;
+    width: 200px;
+}
+
+.cart-summary .pagar_items:hover {
+    background-color: #1b5e20;
+}
+
+.botones-carrito-tienda .ver_carrito {
+    max-width: 600px;
+    width: 100%;
+}
+
+.botones-carrito-tienda .ver_carrito:hover {
+    background-image: linear-gradient(#00a5cf, #004e64);
+}
+
+.caja_mayor_productos_farmacos button {
+    background-image: linear-gradient(to right, #004e64, #00a5cf);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.caja_mayor_productos_farmacos button:hover {
+    background-color: #003b4a;
+}
+
+@media(max-width:768px) {
+    .botones-carrito-tienda {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: #ccc;
+    }
+
+    .botones-carrito-tienda a {
+        margin: auto;
+        width: 100%;
+    }
+
+    .botones-carrito-tienda .pagar_items {
+        width: 100%;
+    }
+}
+
+.caja_mayor_productos_farmacos .container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d0d7de;
+}
+
+.caja_mayor_productos_farmacos h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #004e64;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.caja_mayor_productos_farmacos .cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.caja_mayor_productos_farmacos .cart-item {
+    width: 400px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.caja_mayor_productos_farmacos .cart-item:hover {
+    transform: scale(1.01);
+}
+
+.caja_mayor_productos_farmacos .swiper {
+    width: 100%;
+    max-height: 250px;
+    height: 100%;
+    background-color: #edf2f7;
+}
+
+.caja_mayor_productos_farmacos .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.caja_mayor_productos_farmacos input[type="number"] {
+    width: 50px;
+    padding: 4px;
+    margin-right: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.TOTAL {
+    max-width: 600px;
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #2e7d32;
+}
+
+.regresar {
+    background-color: #007c91 !important;
+}
+.regresar:hover {
+    background-color: #005662 !important;
+}
+
+.caja_mayor_productos_farmacos .remove-item {
+    display: inline-block;
+    margin-top: 10px;
+    color: #c00;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.caja_mayor_productos_farmacos .remove-item:hover {
+    text-decoration: underline;
+}
+
+.caja_mayor_productos_farmacos .product-info {
+    padding: 16px;
+    background-color: #f0f4f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    color: #1e2022;
+}
+
+.caja_mayor_productos_farmacos .product-info:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.detalles_producto {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.detalles_producto div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9e2ec;
+    color: #1e2022;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.detalles_producto div:hover {
+    background-color: #bcccdc;
+}
+
+.detalles_producto .fecha,
+.detalles_producto .descripcion {
+    grid-column: 1 / -1;
+    background-color: #edf2f7;
+    color: #004e64;
+}
+
+.label_descripcion {
+    width: 300px;
+    display: flex;
+    margin: auto 15%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

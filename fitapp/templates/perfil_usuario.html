@@ -1,0 +1,120 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/estilos_perfil_usuario.css' %}">
+
+{% block content %}
+<div class="profile-container">
+  <div class="profile-header">
+    {% if perfil.foto_perfil %}
+      <div class="profile-image">
+        <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil">
+      </div>
+    {% endif %}
+
+    <div class="profile-info">
+      <h2>Mi Perfil</h2>
+    </div>
+  </div>
+
+  {% if perfil %}
+    <!-- DATOS PERSONALES -->
+    <section>
+      <h3>Datos Personales</h3>
+      <ul>
+        {% if perfil.tu_nombre %}<li><strong>Nombre:</strong> {{ perfil.tu_nombre }}</li>{% endif %}
+        {% if perfil.last_name %}<li><strong>Apellidos:</strong> {{ perfil.last_name }}</li>{% endif %}
+        {% if perfil.email %}<li><strong>Correo electrónico:</strong> {{ perfil.email }}</li>{% endif %}
+        {% if perfil.genero %}<li><strong>Género:</strong> {{ perfil.get_genero_display }}</li>{% endif %}
+        {% if perfil.fecha_nacimiento %}<li><strong>Fecha de nacimiento:</strong> {{ perfil.fecha_nacimiento }}</li>{% endif %}
+        {% if perfil.estado_civil %}<li><strong>Estado civil:</strong> {{ perfil.estado_civil }}</li>{% endif %}
+        {% if perfil.numero_telefono %}<li><strong>Número de teléfono:</strong> {{ perfil.numero_telefono }}</li>{% endif %}
+        {% if perfil.contacto_emergencia %}<li><strong>Contacto de emergencia:</strong> {{ perfil.contacto_emergencia }}</li>{% endif %}
+      </ul>
+    </section>
+
+    <!-- SALUD GENERAL -->
+    <section>
+      <h3>Salud General</h3>
+      <ul>
+        {%if perfil.lesiones %}{# ESTA VARIABLE TUVE QUE CREARLA EN LA VISTA DASHBOARD#}
+        <p class="advertencia_salud">Si tienes lesiones, cirugías recientes o condiciones médicas, elige un plan premium para atención directa con un coach.</p>
+        {%endif%}
+
+        {% if perfil.peso_actual %}<li><strong>Peso actual:</strong> {{ perfil.peso_actual }}</li>{% endif %}
+        {% if perfil.altura %}<li><strong>Altura:</strong> {{ perfil.altura }}</li>{% endif %}
+        {% if perfil.enfermedades %}<li><strong>Enfermedades:</strong> {{ perfil.enfermedades }}</li>{% endif %}
+        {% if perfil.alergias %}<li><strong>Alergias:</strong> {{ perfil.alergias }}</li>{% endif %}
+        {% if perfil.medicamentos %}<li><strong>Medicamentos:</strong> {{ perfil.medicamentos }}</li>{% endif %}
+        {% if perfil.cirugias %}<li><strong>Cirugías:</strong> {{ perfil.cirugias }}</li>{% endif %}
+
+        {% if perfil.lesiones %}
+        <li><strong>Lesiones:</strong> Si</li>
+        {%else%}
+         <li><strong>Lesiones:</strong> No</li>
+        {% endif %}
+        {% if perfil.tipo_de_lesiones %}<li><strong>Tipo de Lesiones:</strong> {{ perfil.tipo_de_lesiones }}</li>{% endif %}
+        {% if perfil.tiempo_lesiones %}<li><strong>Tiempo con lesiones:</strong> {{ perfil.tiempo_lesiones }}</li>{% endif %}
+      </ul>
+    </section>
+
+    <!-- ESTILO DE VIDA -->
+    <section>
+      <h3>Estilo de Vida</h3>
+      <ul>
+        {% if perfil.hijos %}<li><strong>Hijos:</strong> {{ perfil.hijos }}</li>{% endif %}
+        {% if perfil.rutina_diaria %}<li><strong>Rutina diaria:</strong> {{ perfil.rutina_diaria }}</li>{% endif %}
+        {% if perfil.meta_personal %}<li><strong>Meta personal:</strong> {{ perfil.get_meta_personal_display }}</li>{% endif %}
+        {% if perfil.interesado_dieta is not None %}<li><strong>Interesado en dieta:</strong> {{ perfil.interesado_dieta|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.interesado_entrenamiento is not None %}<li><strong>Interesado en entrenamiento:</strong> {{ perfil.interesado_entrenamiento|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.interesado_farmacologia is not None %}<li><strong>Interesado en farmacología:</strong> {{ perfil.interesado_farmacologia|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.desea_atencion_personalizada is not None %}<li><strong>Desea atención personalizada:</strong> {{ perfil.desea_atencion_personalizada|yesno:"Sí,No" }}</li>{% endif %}
+      </ul>
+    </section>
+
+    <!-- SUPLEMENTOS Y COMPETENCIAS -->
+    <section>
+      <h3>Suplementos y Competencias</h3>
+      <ul>
+        {% if perfil.uso_farmacologia %}<li><strong>Uso de farmacología:</strong> {{ perfil.uso_farmacologia }}</li>{% endif %}
+        {% if perfil.uso_suplementos %}<li><strong>Uso de suplementos:</strong> {{ perfil.uso_suplementos }}</li>{% endif %}
+        {% if perfil.ha_competido is not None %}<li><strong>¿Ha competido?:</strong> {{ perfil.ha_competido|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.numero_competiciones %}<li><strong>Número de competiciones:</strong> {{ perfil.numero_competiciones }}</li>{% endif %}
+      </ul>
+    </section>
+
+    {% if perfil.genero == 'mujer' %}
+    <!-- SALUD FEMENINA -->
+    <section>
+      <h3>Salud Femenina</h3>
+      <ul>
+        <p class="advertencia_salud">
+        En casos de embarazo o historial de aborto, se recomienda atención personalizada con un coach. Cualquier plan premium incluye este tipo de acompañamiento.
+      </p>
+
+
+        {% if perfil.dias_regla %}<li><strong>Días de regla:</strong> {{ perfil.dias_regla }}</li>{% endif %}
+        {% if perfil.irregular_promedio_3_meses %}<li><strong>Irregularidad (últimos 3 meses):</strong> {{ perfil.irregular_promedio_3_meses }}</li>{% endif %}
+        {% if perfil.esta_embarazada is not None %}<li><strong>¿Está embarazada?:</strong> {{ perfil.esta_embarazada|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.meses_embarazo %}<li><strong>Meses de embarazo:</strong> {{ perfil.meses_embarazo }}</li>{% endif %}
+        {% if perfil.tiempo_postparto %}<li><strong>Tiempo postparto:</strong> {{ perfil.tiempo_postparto }}</li>{% endif %}
+        {% if perfil.ha_abortado is not None %}<li><strong>¿Ha abortado?:</strong> {{ perfil.ha_abortado|yesno:"Sí,No" }}</li>{% endif %}
+        {% if perfil.tipo_aborto %}<li><strong>Tipo de aborto:</strong> {{ perfil.get_tipo_aborto_display }}</li>{% endif %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if not perfil.uso_suplementos %}
+      <div class="mensaje_completa_perfil">Completar tu perfil nos ayuda a ser más eficaces con tus metas</div>
+    {% endif %}
+
+    <div class="profile-actions buttons_container">
+      <a href="{% url 'user_dashboard' %}" class="back-btn">Volver al Dashboard</a>
+      <a href="{% url 'editar_perfil' %}" class="edit-btn">
+        {% if perfil.ha_competido %}Editar perfil{% else %}Completar perfil{% endif %}
+      </a>
+    </div>
+
+  {% else %}
+    <p>No se encontró el perfil del usuario.</p>
+  {% endif %}
+</div>
+{% endblock %}

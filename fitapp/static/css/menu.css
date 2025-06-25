@@ -1,0 +1,220 @@
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+header {
+    background: linear-gradient(135deg, rgba(31,31,31,0.85), rgba(31,31,31,0.95));
+   
+    color: #fff;   
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    /*
+    box-shadow: 0 12px 25px #1f1f1f;
+    border-bottom: 1px solid #2a2a2a; */
+    
+    animation:slideIn 1.5s .3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    
+}
+header h4{
+    
+    font-size: 50px;
+    font-family: "cris";
+    font-family: "estetica_mayuscula";
+    font-family: "desgastadita";
+    font-family: "chida_con_fondito_rayado";
+    font-family: "3d_ventilada";
+    font-family: "desgastadita_dos";
+
+    color:gray;
+    letter-spacing: 7px;
+}
+nav{
+    width:100%;
+    height:60px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+nav ul{
+    height:55px;
+    max-width:900px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color:rgba(31, 31, 31, 0.46); 
+    margin-bottom: 32px; 
+    
+}
+nav ul li{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    margin:5px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.numero_de_items{
+    color:orange;
+    position: relative;
+    width:35px;
+    height: 25px;
+    display:flex;
+    margin:auto;
+    font-size: 12px;
+    
+}
+.numero_de_items_footer{
+    color:white;
+}
+.numero_de_items img{
+    width:100%;
+    height: 100%;
+   
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Links */
+nav ul li a {
+    position: relative; /* importante para ::after */
+    margin: 5px;
+    display: inline-block;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    letter-spacing: 4px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-wrap: nowrap;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+/* AQUI LE ESTAMOS DANDO UN estilo al after que se va aplicar al hacerle hover al a */
+nav ul li a::after {
+    content: '';/* */
+    position: absolute;
+    bottom: 0; /* o -3px según el diseño */
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: #8C6535;
+    transition: width 0.3s ease;/*AQUI ES DONDE LE ESTOY DANDO LA TRANSICION AL WIDTH Y POR ESO SE VA SUAVECITO*/
+}
+
+nav ul li a:hover::after,
+nav ul li a:focus::after {
+    width: 100%;/*ESTE ES EL QUE HACE QUE CUANDO HAGA HOVER SE ESTIENDA Y AGARRE EL 100% DEL WIDTH */
+    /*AQUI LE DOY TODO LO QUE QUIERO QUE HAGA CON EL hover EN EL AFTERS*/
+}
+
+/* AQUI LE ESTAMOS DANDO COLOR AL TEXTO AL PASAR EL MOUSE */
+nav ul li a:hover,
+nav ul li a:focus {
+    color: #8C6535;
+    
+}
+
+
+
+
+
+header img {
+    max-width: 400px;
+    width: 300px;
+    
+    height: 250px;
+    margin-top: 1.2rem;
+    transition: transform 0.3s ease;
+    margin:auto;
+    
+}
+
+header label , header input{
+    cursor:pointer;
+    user-select: none;
+    display:none;
+}
+
+@media screen and (max-width:768px){
+    nav {
+        display:none;
+    }
+   
+   header label{
+    display:flex;
+    margin:auto;
+    
+   }
+   #checkbox{
+    display:none;
+   }
+
+   #checkbox:checked ~ nav ,nav ul  {
+     display:flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background-color: transparent;
+     width:95%;
+     height:auto;
+     margin:0;
+     
+   }
+
+   #checkbox:checked ~ nav li{
+    width:90%;
+    margin:5px auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+   }
+   
+    nav ul li a{
+    display:flex;
+    margin:auto;
+    letter-spacing: 7px;
+    font-size: 15px;
+    animation: slideInFromRight 2s .1s ease-in-out;
+   }
+
+  
+}
+
+@media screen and (max-width:768px){
+    .carrito_centrar_mobil{
+        max-width: 30px;
+        width:100%;
+        display:flex;
+        
+        margin-left:60px;
+     
+    
+   }
+}
+
+
+
+
+

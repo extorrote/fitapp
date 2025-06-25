@@ -1,0 +1,34 @@
+<h1>{{ paquete.nombre }}</h1>
+<p>{{ paquete.descripcion }}</p>
+
+<h2>Contenidos del Paquete</h2>
+<!-- AQUI ES DONDE VOY A VER EL CONTENIDO DE CADA PAQUETE , RUTINAS Y DIETAS-->
+<table>
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Meta</th>
+            <th>Género</th>
+            <th>Contenido</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in contenidos %}
+        <tr>
+            <td>{{ item.get_tipo_contenido_display }}</td>
+            <td>{{ item.get_meta_personal_display }}</td>
+            <td>{{ item.get_genero_display }}</td>
+            <td>{{ item.contenido|truncatechars:50 }}</td>
+            <td>
+                <a href="{% url 'editar_contenido' item.id %}">Editar</a>
+                <!-- Puedes agregar un botón para eliminar también -->
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No hay contenidos en este paquete.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'crear_contenido' paquete.id %}">Agregar nuevo contenido</a>

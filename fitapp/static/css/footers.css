@@ -1,0 +1,222 @@
+
+/* ############# FOOTER ######################*/
+.footer {      
+    
+   background: linear-gradient(145deg, rgba(31,31,31,0.9), rgba(31,31,31,0.95));  
+   background: transparent;
+    margin-top: 25px;
+    color: #fff;
+    padding: 40px 20px;
+    padding-bottom: 0;
+    text-align: center;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
+    
+}
+
+@media screen and (max-width: 500px) {
+    .footer {
+
+        
+    }
+
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer h2 {
+    margin-bottom: 30px;
+    font-size: .7rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+    letter-spacing: 1px;
+    color: #fff;
+    opacity:.7;
+}
+
+.footer p {
+    font-size:13px;
+    color: #fff;
+    opacity:.7;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.social-icon {
+    width: 40px; /* Set width */
+    height: 40px; /* Set height */
+    background-size: cover; /* Ensure background image covers the button */
+    transition: transform 0.3s;
+}
+
+.whatsapp {
+    background-image: url(/static/images/whatsapp.png);
+}
+
+.instagram {
+    background-image: url(/static/images/instargram.png);
+
+}
+
+.facebook {
+    
+    background-image: url(/static/images/facebook.png);
+}
+
+.youtube {
+    
+    background-image: url(/static/images/youtube.png);
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.footer-info {
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.footer-rights {
+    margin: 15px 0;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.footer-links {
+    margin: 15px 0;
+    
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+@media screen and (max-width:600px){
+   .footer-link{
+        margin: 0 5px;
+    }
+    .footer-links{
+        
+        width:100%;
+       
+       display:flex;
+       margin:auto;
+       justify-content: center;
+      
+    }
+    .footer-link{
+         font-size: 13px;
+         font-weight: 400;
+         margin:3px;
+         padding:0;
+         text-decoration: underline;
+    }
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color:#C49B5C;
+}
+
+.footer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+
+
+.footer input,
+.footer textarea {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #444;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.footer input:focus,
+.footer textarea:focus {
+    border-color: #1f1f1f;
+    outline: none;
+}
+
+.footer button {
+    font-size: 20px;
+    max-width:350px;
+    width:100%;
+    height: 50px;
+    display:flex;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    background: #8C6535;      
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    
+    
+}
+
+.footer button:hover {
+    background-color: #BFA169;
+    transform: translateY(-4px);
+}
+
+.map-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media screen and (max-width:768px){
+    .footer button{
+        width:90%;
+        display:flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.footer  .logo {
+    
+    max-width:110px;
+    width:100%;
+    margin:0 auto;
+    padding:0;
+    margin-bottom: -22px;
+    
+}
+
+.footer  .logo:hover{
+    
+    opacity: .8;
+    
+}

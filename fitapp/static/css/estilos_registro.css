@@ -1,0 +1,217 @@
+/* RESET BÁSICO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  
+  
+}
+.caja_principal{
+  max-width:700px;
+  width:100%;
+  
+  margin:auto;
+}
+/* ENCABEZADO */
+.registro_header {
+  
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.registro_header .overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* FORMULARIO */
+.form_registro {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.form_registro h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.intro_text {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 1rem;
+}
+
+form fieldset {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+form legend {
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0 10px;
+  color: #005a87;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  background: #007acc;
+  color: white;
+  padding: 12px;
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+
+form button:hover {
+  background: #005fa3;
+}
+
+.back_link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007acc;
+  text-decoration: none;
+}
+
+.back_link:hover {
+  text-decoration: underline;
+}
+
+/* NUEVO: Estructura para mostrar 2 campos por línea */
+.form_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form_group {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  .form_registro {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .registro_header {
+    padding: 40px 10px;
+  }
+
+  .registro_header .overlay {
+    padding: 20px 10px;
+  }
+
+  form legend {
+    font-size: 1rem;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 0.95rem;
+  }
+
+  form button {
+    font-size: 1rem;
+  }
+
+  /* NUEVO: en móviles los campos se apilan */
+  .form_row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .form_registro h2 {
+    font-size: 1.5rem;
+  }
+
+  .intro_text {
+    font-size: 0.95rem;
+  }
+
+  form legend {
+    font-size: 0.95rem;
+  }
+
+  form button {
+    padding: 10px;
+  }
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+details {
+  cursor: pointer;
+  color: #48e;
+}

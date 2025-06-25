@@ -1,0 +1,391 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/estilos_registro.css' %}" type="text/css">
+
+
+
+{%if user.is_authenticated %}
+          
+            
+      <div class="form_registro">
+        <h2>{{ es_edicion|yesno:"Editar perfil,Registro" }}</h2>
+        <p class="intro_text">
+         
+          {% if es_edicion %}
+            Puedes actualizar tu información aquí.
+          {% else %}
+            Estás a punto de empezar a transformar tu vida con nosotros.
+          {% endif %}
+        </p>
+
+        {% if user_form.non_field_errors or profile_form.non_field_errors %}
+          <div class="form-errors">
+            {% for error in user_form.non_field_errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in profile_form.non_field_errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <fieldset>
+            <legend>Datos de la cuenta</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ user_form.username.label_tag }} {{ user_form.username }}
+              </div>
+              <div class="form_group">
+                {{ user_form.email.label_tag }} {{ user_form.email }}
+              </div>
+            </div>
+            {% for error in user_form.username.errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+            <details>
+              <summary>Cambiar contraseña</summary>
+              <div class="form_row">
+                <div class="form_group">
+                  <label for="id_current_password">Contraseña actual</label>
+                  {{ user_form.current_password }}
+                </div>
+              </div>
+              <div class="form_row">
+                <div class="form_group">
+                  {{ user_form.password.label_tag }} {{ user_form.password }}
+                </div>
+                <div class="form_group">
+                  {{ user_form.confirm_password.label_tag }} {{ user_form.confirm_password }}
+                </div>
+              </div>
+            </details>
+            {% else %}
+            <div class="form_row">
+              <div class="form_group">
+                {{ user_form.password.label_tag }} {{ user_form.password }}
+              </div>
+              <div class="form_group">
+                {{ user_form.confirm_password.label_tag }} {{ user_form.confirm_password }}
+              </div>
+            </div>
+            {% endif %}
+
+            <div class="form_row">
+              <div class="form_group">
+                {{ user_form.first_name.label_tag }} {{ user_form.first_name }}
+              </div>
+              <div class="form_group">
+                {{ user_form.last_name.label_tag }} {{ user_form.last_name }}
+              </div>
+            </div>     
+          </fieldset>
+          
+          <fieldset>
+            <legend>Información personal</legend>
+            <div class="form_row" >
+              <div class="form_group">
+                {{ profile_form.genero.label_tag }} {{ profile_form.genero }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.fecha_nacimiento.label_tag }} {{ profile_form.fecha_nacimiento }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.foto_perfil.label_tag }} {{ profile_form.foto_perfil }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.estado_civil.label_tag }} {{ profile_form.estado_civil }}
+              </div>
+            </div>
+          </fieldset>
+      
+          <fieldset>
+            <legend>Contacto</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.numero_telefono.label_tag }} {{ profile_form.numero_telefono }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.contacto_emergencia.label_tag }} {{ profile_form.contacto_emergencia }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Salud general</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.peso_actual.label_tag }} {{ profile_form.peso_actual }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.altura.label_tag }} {{ profile_form.altura }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.enfermedades.label_tag }} {{ profile_form.enfermedades }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.alergias.label_tag }} {{ profile_form.alergias }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.medicamentos.label_tag }} {{ profile_form.medicamentos }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.cirugias.label_tag }} {{ profile_form.cirugias }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.lesiones.label_tag }} {{ profile_form.lesiones }}
+              </div>
+
+                
+               <div class="form_group">
+                {{ profile_form.tipo_de_lesiones.label_tag }} {{ profile_form.tipo_de_lesiones }}
+              </div>
+
+              <div class="form_group">
+                {{ profile_form.tiempo_lesiones.label_tag }} {{ profile_form.tiempo_lesiones }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Estilo de vida</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.hijos.label_tag }} {{ profile_form.hijos }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.rutina_diaria.label_tag }} {{ profile_form.rutina_diaria }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Metas y preferencias</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.meta_personal.label_tag }} {{ profile_form.meta_personal }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.interesado_dieta.label_tag }} {{ profile_form.interesado_dieta }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.interesado_entrenamiento.label_tag }} {{ profile_form.interesado_entrenamiento }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.interesado_farmacologia.label_tag }} {{ profile_form.interesado_farmacologia }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.desea_atencion_personalizada.label_tag }} {{ profile_form.desea_atencion_personalizada }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Farmacología y suplementos</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.uso_farmacologia.label_tag }} {{ profile_form.uso_farmacologia }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.uso_suplementos.label_tag }} {{ profile_form.uso_suplementos }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Competencias</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.ha_competido.label_tag }} {{ profile_form.ha_competido }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.numero_competiciones.label_tag }} {{ profile_form.numero_competiciones }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="salud-femenina">
+            <legend>Salud femenina</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.dias_regla.label_tag }} {{ profile_form.dias_regla }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.irregular_promedio_3_meses.label_tag }} {{ profile_form.irregular_promedio_3_meses }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.esta_embarazada.label_tag }} {{ profile_form.esta_embarazada }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.meses_embarazo.label_tag }}{{ profile_form.meses_embarazo }}
+              </div>
+            </div>
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.tiempo_postparto.label_tag }} {{ profile_form.tiempo_postparto }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.ha_abortado.label_tag }} {{ profile_form.ha_abortado }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.tipo_aborto.label_tag }} {{ profile_form.tipo_aborto }}
+              </div>
+            </div>
+
+          </fieldset>
+
+          <button type="submit">
+            {% if user.is_authenticated %}Guardar Cambios{% else %}Registrarse{% endif %}
+          </button>
+        </form>
+       <!--  ESTO LO CREE PARA HACER EL REGISTRO MAS FACIL Y AL EDITAR SI LE ESTOY PIDIENDO TODO EL FORM AL USUARIO-->
+
+{%else%}
+
+      <div class="form_registro">
+        <h2>{{ es_edicion|yesno:"Editar perfil,Registro" }}</h2>
+        <p class="intro_text">
+          Toda la información de tu perfil es fundamental para garantizar que tus planes de dieta y entrenamiento sean completamente personalizados y efectivos.
+          {% if es_edicion %}
+            Puedes actualizar tu información aquí.
+          {% else %}
+            Estás a punto de empezar a transformar tu vida con nosotros.
+          {% endif %}
+        </p>
+
+        {% if user_form.non_field_errors or profile_form.non_field_errors %}
+          <div class="form-errors">
+            {% for error in user_form.non_field_errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in profile_form.non_field_errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <fieldset>
+            <legend>Datos de la cuenta</legend>
+            <div class="form_row">
+              <div class="form_group">
+                {{ user_form.username.label_tag }} {{ user_form.username }}
+              </div>
+              <div class="form_group">
+                {{ user_form.email.label_tag }} {{ user_form.email }}
+              </div>
+            </div>
+            {% for error in user_form.username.errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+            <div class="form_row">
+              <div class="form_group">
+                {{ user_form.password.label_tag }} {{ user_form.password }}
+              </div>
+              <div class="form_group">
+                {{ user_form.confirm_password.label_tag }} {{ user_form.confirm_password }}
+              </div>
+
+              <div class="form_group">
+                {{ profile_form.genero.label_tag }} {{ profile_form.genero }}
+              </div>
+
+              <div class="form_group">
+                {{ user_form.first_name.label_tag }} {{ user_form.first_name }}
+              </div>
+
+              <div class="form_group">
+                {{ user_form.last_name.label_tag }} {{ user_form.last_name }}
+              </div>
+
+              <div class="form_group">
+              {{ profile_form.numero_telefono.label_tag }} {{ profile_form.numero_telefono }}
+              </div>
+              
+              <div class="form_group">
+                {{ profile_form.fecha_nacimiento.label_tag }} {{ profile_form.fecha_nacimiento }}
+              </div>
+
+              <div class="form_group">
+                {{ profile_form.peso_actual.label_tag }} {{ profile_form.peso_actual }}
+              </div>
+               <div class="form_group">
+                {{ profile_form.altura.label_tag }} {{ profile_form.altura }}
+              </div>
+
+              <div class="form_group">
+                {{ profile_form.cirugias.label_tag }} {{ profile_form.cirugias }}
+              </div>   
+              
+              <div class="form_group">
+                {{ profile_form.lesiones.label_tag }} {{ profile_form.lesiones }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.tipo_de_lesiones.label_tag }} {{ profile_form.tipo_de_lesiones }}
+              </div>
+
+               <div class="form_group">
+                {{ profile_form.meta_personal.label_tag }} {{ profile_form.meta_personal }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="salud-femenina">
+            <legend>Salud femenina</legend>
+            
+            <div class="form_row">
+              <div class="form_group">
+                {{ profile_form.esta_embarazada.label_tag }} {{ profile_form.esta_embarazada }}
+              </div>
+              <div class="form_group">
+                {{ profile_form.meses_embarazo.label_tag }}{{ profile_form.meses_embarazo }}
+              </div>
+            </div>
+
+          </fieldset>
+
+          <button type="submit">Registrarse</button>       
+        </form>
+{%endif%}
+  <a href="{% url 'index' %}" class="back_link">Regresar</a>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const generoSelect = document.getElementById("id_genero");
+    const saludFemenina = document.getElementById("salud-femenina");
+
+    function toggleSaludFemenina() {
+      const genero = generoSelect.value.toLowerCase();//QUE SI GENERO ES HOMBRE O OTRO NO MUESTRE LOS DATOS DE MUJER
+      saludFemenina.style.display = (genero === "hombre" || genero === "otro") ? "none" : "";
+    }
+
+
+    if (generoSelect && saludFemenina) {
+      generoSelect.addEventListener("change", toggleSaludFemenina);
+      toggleSaludFemenina();
+    }
+  });
+</script>
+
+

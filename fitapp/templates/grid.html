@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>FitWeb</title>
+  {% load static %}
+  
+  <style>
+    body{
+        background:#1f1f1f;
+    }
+ .grid{
+    max-width:1200px;
+    display:grid;
+    margin:30px auto;
+    gap:20px;
+    grid-template-columns: repeat(4, 1fr); /*AQUI LE ESTOY INDICANDO QUE ME PONGA 3 DEL MISMO TAMAÑO POR COLUMNA*/
+    place-items: center;
+    
+;
+    border-radius:40px;
+    padding:15px;
+    
+ }
+ 
+ img{
+    width:100%;
+    border-radius:40px;
+    box-shadow:0 0 5px #48e;
+ }
+
+ img:hover{
+    cursor:pointer;
+    box-shadow:0 0 20px #48e;
+ }
+
+ 
+
+  </style>
+
+</head>
+
+</body>
+
+<div class="grid">
+<img src="{%static 'images/javier_herrera.png'%}">
+<img src="{%static 'images/hero_fitness.png'%}">
+<img src="{%static 'images/javier_herrera.png'%}">
+<img src="{%static 'images/alejandro.png'%}">
+<img src="{%static 'images/javier_herrera.png'%}">
+<img src="{%static 'images/hero_fitness.png'%}">
+<img src="{%static 'images/javier_herrera.png'%}">
+<img src="{%static 'images/hero_fitness.png'%}">
+<img src="{%static 'images/javier_herrera.png'%}">
+<img src="{%static 'images/alejandro.png'%}">
+</div>
+
+</body>
+</html>

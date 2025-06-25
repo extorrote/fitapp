@@ -1,0 +1,10 @@
+<!-- templates/pago_exitoso.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>¡Gracias por tu compra!</h2>
+    <p>Tu pago ha sido procesado exitosamente. Ya puedes acceder al contenido del paquete desde tu <a href="{% url 'user_dashboard' %}">dashboard</a>.</p>
+  </div>
+{% endblock %}

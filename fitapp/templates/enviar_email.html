@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {%load static%}
+  <meta name="author" content="CHRISTHIAN STEPHEN ">
+
+  <title> Desarrollo de Paginas y Aplicaciones Web Puerto Vallarta y todo Mexico</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" /><!--ICONOS GG-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="programador" content="christian stephen">
+<meta name="description" content="Desarrollador web Christian Stephen dedicado a crear sitios y aplicaciones que reflejen los valores y principios de tu negocio por medio del mundo digital. Comprometido con la excelencia técnica y la integridad ética en cada proyecto, utilizando mis habilidades para impactar positivamente en línea con mi trabajo.">
+<meta name="keywords" content="Desarrollo Web Puerto Vallarta Mexico, Desarrollador web de aplicaciones web, Sitios web acorde a las necesidades de tu negocio, Desarrollador web, Diseño web, Programación, programador web, Experto en desarrollo y hosting web, desarrollo digital">
+
+<meta name="title" content="Desarrollo Web 100% Personalizado | Métodos y Diseño Personalizado Dependiendo de las Necesidades de Tu negocio">
+<link rel="icon" href="{% static 'images/foto-tarjeta-ico.ico' %}" alt="logo pagina">
+
+<meta property="og:title" content="Puerto Vallarta Web Developer">
+<meta property="og:image" content="/static/images/paginas_web_puerto_vallarta.png" type="image/png">
+<meta property="og:description" content="Desarrollador web Christian Stephen dedicado a crear sitios y aplicaciones que reflejen los valores y principios de tu negocio por medio del mundo digital. Comprometido con la excelencia técnica y la integridad ética en cada proyecto, utilizando mis habilidades para impactar positivamente en línea con mi trabajo.">
+  
+<style>
+  :root {
+    --primary-color: #2c3e50;
+    --accent-color: orange;
+    --background-color: #f5f7fa;
+    --text-color: #2c3e50;
+    --white: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ccd6dd;
+    --input-focus: #3498db;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-menu {
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1rem 0;
+  }
+
+
+
+  .main-menu li  {
+    
+    color: var(--primary-color);
+    background-color:orange;
+    max-width:400px;
+    height:40px;
+    width:100%;
+    display:flex;
+    margin:auto;
+    justify-content:center;
+    
+    align-items:center;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  @media screen and (max-width:480px){
+    .main-menu li{
+        width:75%;
+    }
+  }
+  .main-menu li a{
+    text-align:center;
+   text-decoration: none;
+   font-weight: 600;
+   color:#ffffff;
+   font-size:20px;  }
+
+  .main-menu li:hover {
+    background-color: orangered;
+    color: var(--white);
+    cursor:pointer;
+  }
+
+  form {
+    background-color: var(--white);
+    padding: 2rem;
+    margin: 3rem auto;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    transition: border-color 0.3s;
+    color: var(--text-color);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--input-focus);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  input[type="file"] {
+    margin-top: 1rem;
+  }
+
+  button[type="submit"] {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.9rem;
+    background-color: var(--accent-color);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color:orangered;
+  }
+
+  footer {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .main-menu ul {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    form {
+      margin: 2rem 1rem;
+      padding: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    button[type="submit"] {
+      font-size: 1rem;
+    }
+  }
+</style>
+       
+</head>
+<nav class="main-menu">
+            
+
+    
+      <li><a href="{% url 'index'%}"  tarjet=blank >Home</a></li>
+
+
+
+</nav>  
+<body>
+    
+  <form method="post" ><h2>Enviar Email</h2>
+    {% csrf_token %}
+    <div>
+        <label for="{{ form.name.id_for_label }}">Nombre:</label>
+        {{ form.name }}
+    </div>
+    <div>
+        <label for="{{ form.email.id_for_label }}">Email:</label>
+        {{ form.email }}
+    </div>
+    <div>
+        <label for="{{ form.phone.id_for_label }}">Telefono:</label>
+        {{ form.phone }}
+    </div>
+    <div>
+        <label for="{{ form.message.id_for_label }}">Mensaje:</label>
+        {{ form.message }}
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+    </form>
+  
+    
+</body>
+</html>

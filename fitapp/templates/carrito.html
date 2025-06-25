@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/estilos_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/carrito.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/store.css'%}">
+    <link rel="stylesheet" href="{% static 'fuentes/fuentes.css' %}"><!--ESTO ES PARA CARGAR FUENTES NUEVAS-->
+</head>
+<body>
+
+<!-- Barra de navegación (Dashboard Header) -->
+
+<header>
+    <img src="{% static 'images/logo2_sin_fondo.png' %}" alt="Logo FitWeb" />
+    <input type="checkbox" id="checkbox">
+    <label for="checkbox">
+      <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#fff">
+        <path d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/>
+      </svg>
+    </label>
+   
+    <nav>
+      <ul>
+      {% if user.is_authenticated %}
+      <li> <a href="{% url 'user_dashboard' %}">REGRESAR</a></li>
+      {% else %}
+      <li><a href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> INICIO</a></li>
+      {% endif %}
+       
+      <li><a href="{% url 'perfil_usuario' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>MI PERFIL</a></li>
+      <li><a href="{% url 'logout' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C6535"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg> CERRAR SESIÓN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<div class="carrito_grid">
+  {% for entry in productos_en_carrito %}
+    {% with item=entry.item producto=entry.producto %}
+    <div class="grid_item">
+      <!-- Añade action si quieres -->
+      <form method="post" action="">
+        {% csrf_token %}
+
+        {% if producto.foto1 %}
+          <img src="{{ producto.foto1.url }}" alt="{{ producto.titulo }}" class="swiper-slide img-producto" style="width:100%; height:250px; object-fit:contain; border-radius:0;">
+        {% else %}
+          <!-- Ruta corregida: images, no imgages -->
+          <img src="{% static 'images/logo_sin_fondo.png' %}" alt="Sin imagen" class="swiper-slide img-producto" style="width:100%; height:250px; object-fit:contain; border-radius:0;">
+        {% endif %}
+
+        <div class="product-info carrito-detalles">
+          <div><strong>Producto:</strong> {{ producto.titulo }}</div>
+
+          <div>
+            <strong>Precio Unitario:</strong>
+            {% if item.variante %}
+              ${{ item.variante.precio }}
+            {% else %}
+              ${{ producto.precio }}
+            {% endif %}
+          </div>
+            
+              
+
+          {% if entry.es_ropa_o_calzado %}
+            <div class="stockdetalle-stock_detalle">
+              <details>
+                <summary><h4>Ver Stock por Talla y Color</h4></summary>
+                <div class="stockdetalle-stock_list">
+                  {% for color, tallas_dict in entry.stock_por_talla_y_color.items %}
+                    {% for talla, stock in tallas_dict.items %}
+                      <div class="stockdetalle-stock_item {% if producto.tipo == 'calzado' %}calzado-item{% else %}ropa-item{% endif %}">
+                        {% if producto.tipo == 'calzado' %}
+                          <span class="stockdetalle-color-stock">
+                            <strong>Color:</strong> {{ color|capfirst }} | <strong>Stock:</strong> {{ stock }}
+                          </span>
+                          <span class="stockdetalle-talla">
+                            <strong>Talla:</strong> {{ talla }}
+                          </span>
+                        {% else %}
+                          <span><strong>Color:</strong> {{ color|capfirst }}</span> |
+                          <span><strong>Talla:</strong> {{ talla }}</span> |
+                          <span><strong>Stock:</strong> {{ stock }}</span>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  {% endfor %}
+                </div>
+              </details>
+            </div>
+
+            <div class="form-item">
+              <label for="color_{{ item.id }}">Color:</label>
+              <select name="color_{{ item.id }}" id="color_{{ item.id }}" onchange="actualizarTallas({{ item.id }})" required>
+                <option value="">-- Selecciona un color --</option>
+                {% regroup producto.variantes.all by color as variantes_por_color %}
+                {% for grupo in variantes_por_color %}
+                  <option value="{{ grupo.grouper }}" {% if item.color == grupo.grouper %}selected{% endif %}>
+                    {{ grupo.grouper|capfirst }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-item">
+              <label for="talla_{{ item.id }}">Talla:</label>
+              <!-- Cambiado id y name a talla_{{item.id}} -->
+              <select name="talla_{{ item.id }}" id="talla_{{ item.id }}" data-producto-id="{{ producto.id }}" onchange="actualizarCantidadMax({{ item.id }})" required>
+                <option value="">-- Selecciona una talla --</option>
+                {% for variante in producto.variantes.all %}
+                  {% if variante.color == item.color %}
+                    {% if producto.tipo == 'ropa' %}
+                      {% with talla_var=variante.talla_ropa %}
+                        {% if talla_var %}
+                          <option value="{{ variante.id }}" {% if item.variante and item.variante.id == variante.id %}selected{% endif %}>
+                            {{ talla_var.codigo }}
+                          </option>
+                        {% endif %}
+                      {% endwith %}
+                    {% elif producto.tipo == 'calzado' %}
+                      {% with talla_var=variante.talla_calzado %}
+                        {% if talla_var %}
+                          <option value="{{ variante.id }}" {% if item.variante and item.variante.id == variante.id %}selected{% endif %}>
+                            {{ talla_var }}
+                          </option>
+                        {% endif %}
+                      {% endwith %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+
+          <div class="form-item">
+            <label for="cantidad_{{ item.id }}">Cantidad:</label>
+            {% if entry.es_ropa_o_calzado %}
+              <input
+                type="number"
+                name="cantidad_{{ item.id }}"
+                id="cantidad_{{ item.id }}"
+                value="{{ item.cantidad }}"
+                min="1"
+                max="1"
+                class="cantidad-input"
+                disabled
+              >
+            {% else %}
+              <input
+                type="number"
+                name="cantidad_{{ item.id }}"
+                id="cantidad_{{ item.id }}"
+                value="{{ item.cantidad }}"
+                min="1"
+                max="1000"
+                class="cantidad-input"
+              >
+            {% endif %}
+          </div>
+
+          <div><strong>Subtotal:</strong> ${{ item.subtotal|floatformat:2 }}</div>
+          {% if producto.tiene_envio_gratis %}
+              <p class="envio_gratis"><strong>¡Con envío gratis! ✅</strong></p>
+              {%else%}
+              <p class="envio_gratis no_envio_gratis" ><strong>El costo de este Producto no incluye tarifa de Envio</strong></p>
+              {% endif %}
+        </div>
+
+        <div class="botones-carrito-tienda ">
+          <button type="submit" name="actualizar_item_id" value="{{ item.id }}" class="boton-actualizar">Actualizar Producto</button>
+        </div>
+        <a class="boton_eliminar" href="{% url 'eliminar_del_carrito' item.id %}">Eliminar Producto</a>
+      </form>
+    </div> <!-- grid_item -->
+    {% endwith %}
+  {% empty %}
+    <p class="carrito_bacio">Tu carrito está vacío.</p>
+  {% endfor %}
+</div> <!-- carrito_grid -->
+
+{% if productos_en_carrito %}
+  <div style="text-align: right; margin-top: 20px;" class="TOTAL">
+    <h3>Total: ${{ total|floatformat:2 }}</h3>
+  </div>
+  <div class="botones-carrito">
+    <a class="regresar" href="{% url 'user_dashboard' %}">Regresar</a>
+    <a href="{% url 'direccion_envio' %}">Procesar pago</a>
+  </div>
+{% else %}
+  <div class="botones-carrito">
+    <a class="regresar" href="{% url 'user_dashboard' %}">Regresar</a>
+  </div>
+{% endif %}
+
+<!-- Script para cargar tallas dinámicamente según color -->
+<script>
+function actualizarTallas(itemId) {
+  const colorSelect = document.getElementById(`color_${itemId}`);
+  const tallaSelect = document.getElementById(`talla_${itemId}`);
+  const cantidadInput = document.getElementById(`cantidad_${itemId}`);
+  const productoId = tallaSelect.dataset.productoId;
+  const color = colorSelect.value;
+
+  tallaSelect.innerHTML = '<option value="">Cargando tallas...</option>';
+  cantidadInput.value = 1;
+  cantidadInput.disabled = true;
+  cantidadInput.max = 1;
+
+  if (!color) {
+    tallaSelect.innerHTML = '<option value="">-- Selecciona una talla --</option>';
+    cantidadInput.disabled = true;
+    return;
+  }
+
+  fetch(`/ajax/tallas_por_color/?producto_id=${productoId}&color=${encodeURIComponent(color)}`)
+    .then(response => response.json())
+    .then(data => {
+      tallaSelect.innerHTML = '<option value="">-- Selecciona una talla --</option>';
+      data.tallas.forEach(talla => {
+        const option = document.createElement('option');
+        option.value = talla.id;
+        option.textContent = `${talla.nombre} (Stock: ${talla.stock})`;
+        option.dataset.stock = talla.stock;
+        tallaSelect.appendChild(option);
+      });
+
+      // Habilitar cantidad al seleccionar talla
+      tallaSelect.addEventListener('change', () => {
+        const selectedOption = tallaSelect.options[tallaSelect.selectedIndex];
+        const stock = parseInt(selectedOption?.dataset.stock || '0');
+        if (stock > 0) {
+          cantidadInput.max = stock;
+          if (cantidadInput.value > stock) {
+            cantidadInput.value = stock;
+          }
+          cantidadInput.disabled = false;
+        } else {
+          cantidadInput.value = 0;
+          cantidadInput.disabled = true;
+        }
+      });
+    })
+    .catch(() => {
+      tallaSelect.innerHTML = '<option value="">Error cargando tallas</option>';
+      cantidadInput.disabled = true;
+    });
+}
+
+function limitarCantidadManual(itemId) {
+  const input = document.getElementById(`cantidad_${itemId}`);
+  input.addEventListener('input', function () {
+    const max = parseInt(this.max || '1');
+    if (this.value > max) {
+      this.value = max;
+    } else if (this.value < 1) {
+      this.value = 1;
+    }
+  });
+}
+
+// Ejecutar limitadores para todos los productos del carrito
+document.addEventListener('DOMContentLoaded', function () {
+  {% for entry in productos_en_carrito %}
+    limitarCantidadManual({{ entry.item.id }});
+  {% endfor %}
+});
+
+</script>
+
+</body>
+</html>
